@@ -3,31 +3,7 @@ import os
 from typing import List, Union, Tuple
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-
-class EmbeddingGenerator:
-    def __init__(self, model=None):
-        """Initialize with model loaded once"""
-        self.model = model
-
-    def generate_batch(self, texts: List[str], batch_size: int = 32) -> np.ndarray:
-        """Generate embeddings for multiple texts efficiently"""
-        print(f"Generating embeddings for {len(texts)} texts...")
-        embeddings = self.model.encode(
-            texts,
-            batch_size=batch_size,
-            show_progress_bar=True,
-            convert_to_numpy=True
-        )
-        return embeddings
-
-    def save_model(self, filepath):
-        with open(filepath, 'wb') as f:
-            pickle.dump(self, f)
-
-    def load_model(self, filepath):
-        with open(filepath, 'rb') as f:
-            generator = pickle.load(f)
-            self.model = generator.model
+from components import EmbeddingGenerator
 
 def load_embeddings(filepath: str):
     """Load saved embeddings"""
@@ -77,11 +53,17 @@ def print_search_results(results: List[Tuple[float, dict]], query: str):
         print(f"   Columns: {metadata.get('all_columns', 'N/A')[:100]}{'...' if len(str(metadata.get('all_columns', ''))) > 100 else ''}")
         print()
 
-if __name__ == '__main__':
-    # Load embeddings and generator
+def load_search_components():
+    from components import EmbeddingGenerator
+
     embedding_data = load_embeddings('data/embedding/miniLM_embedding.pkl')
     generator = EmbeddingGenerator()
     generator.load_model('models/miniLM_embedding_generator.pkl')
+    return embedding_data, generator
+
+if __name__ == '__main__':
+    # Load embeddings and generator
+    embedding_data, generator = load_search_components()
 
     # Example search
     query = "help me find fraud related tables"

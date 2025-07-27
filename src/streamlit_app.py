@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
-from search import load_embeddings, EmbeddingGenerator, search_similar_tables
+from search import load_search_components, search_similar_tables
+
 
 # Configure page
 st.set_page_config(
@@ -10,12 +11,10 @@ st.set_page_config(
 )
 
 @st.cache_resource
-def load_search_components():
+def load_search_components_for_streamlit():
     """Load embeddings and model (cached for performance)"""
     try:
-        embedding_data = load_embeddings('data/embedding/miniLM_embedding.pkl')
-        generator = EmbeddingGenerator()
-        generator.load_model('models/miniLM_embedding_generator.pkl')
+        embedding_data, generator = load_search_components()
         return embedding_data, generator
     except Exception as e:
         st.error(f"Error loading search components: {e}")
