@@ -84,6 +84,6 @@ if __name__ == '__main__':
     generator.load_model('models/miniLM_embedding_generator.pkl')
 
     # Example search
-    query = "customer orders transactions"
+    query = "help me find fraud related tables"
     results = search_similar_tables(query, embedding_data, generator, top_k=10)
     print_search_results(results, query)
