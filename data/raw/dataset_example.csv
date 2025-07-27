@@ -1,0 +1,274 @@
+table_catalog|table_schema|table_name|all_columns
+enterprise|telecom_core|customer_accounts|customer_id, account_number, first_name, last_name, email, phone_number, registration_date, account_status, credit_limit, payment_method
+enterprise|telecom_core|prepaid_plans|plan_id, plan_name, plan_type, monthly_fee, data_allowance_gb, voice_minutes, sms_count, validity_days, is_active, created_date
+enterprise|telecom_core|subscriber_usage|usage_id, customer_id, plan_id, usage_date, data_used_mb, voice_minutes_used, sms_sent, overage_charges, billing_cycle
+enterprise|telecom_core|device_inventory|device_id, imei, device_model, manufacturer, purchase_date, warranty_expiry, device_status, assigned_customer_id
+enterprise|telecom_core|network_towers|tower_id, tower_name, latitude, longitude, coverage_radius_km, technology_type, installation_date, maintenance_status
+enterprise|telecom_core|call_detail_records|cdr_id, caller_number, called_number, call_start_time, call_duration_seconds, call_type, tower_id, billing_amount
+enterprise|telecom_core|data_sessions|session_id, customer_id, session_start, session_end, data_volume_mb, ip_address, device_type, network_type
+enterprise|telecom_core|billing_transactions|transaction_id, customer_id, transaction_date, amount, transaction_type, payment_status, payment_method, invoice_number
+enterprise|telecom_core|customer_support_tickets|ticket_id, customer_id, issue_category, priority_level, status, created_date, resolved_date, agent_id, resolution_notes
+enterprise|telecom_core|roaming_usage|roaming_id, customer_id, country_code, operator_name, usage_date, data_used_mb, voice_minutes, sms_count, roaming_charges
+enterprise|telecom_prepaid|balance_history|balance_id, customer_id, transaction_date, previous_balance, transaction_amount, new_balance, transaction_type, expiry_date
+enterprise|telecom_prepaid|recharge_transactions|recharge_id, customer_id, recharge_amount, recharge_date, payment_method, bonus_data_mb, bonus_minutes, validity_extension_days
+enterprise|telecom_prepaid|service_activations|activation_id, customer_id, service_code, service_name, activation_date, service_fee, validity_period, auto_renewal
+enterprise|telecom_prepaid|data_packs|pack_id, pack_name, data_amount_gb, price, validity_days, speed_limit_mbps, is_addon, target_customer_segment
+enterprise|telecom_prepaid|emergency_credit|credit_id, customer_id, credit_amount, granted_date, repayment_due_date, repayment_status, interest_rate
+enterprise|telecom_prepaid|friend_family_numbers|ff_id, customer_id, friend_number, relationship_type, added_date, special_rate, call_minutes_used
+enterprise|telecom_prepaid|loyalty_points|points_id, customer_id, points_earned, points_used, transaction_date, points_balance, earning_source, expiry_date
+enterprise|telecom_prepaid|promotional_offers|offer_id, offer_name, offer_type, discount_percentage, validity_start, validity_end, target_segments, usage_count
+enterprise|telecom_network|base_stations|station_id, station_name, site_type, latitude, longitude, height_meters, power_output_watts, frequency_band, operator_status
+enterprise|telecom_network|network_performance|performance_id, station_id, measurement_date, signal_strength_dbm, throughput_mbps, latency_ms, packet_loss_percentage
+enterprise|telecom_network|equipment_maintenance|maintenance_id, equipment_id, maintenance_type, scheduled_date, completed_date, technician_id, maintenance_notes, next_due_date
+enterprise|telecom_network|spectrum_allocation|allocation_id, frequency_start_mhz, frequency_end_mhz, license_holder, region_code, allocation_date, expiry_date
+enterprise|telecom_network|coverage_maps|coverage_id, region_id, technology_type, signal_quality, coverage_percentage, population_covered, last_updated
+enterprise|telecom_network|network_incidents|incident_id, affected_stations, incident_type, severity_level, start_time, end_time, root_cause, customers_affected
+enterprise|telecom_network|capacity_planning|planning_id, region_id, current_capacity, projected_demand, upgrade_requirements, budget_estimate, target_completion_date
+enterprise|telecom_network|quality_metrics|metric_id, measurement_date, region_id, call_success_rate, data_speed_avg_mbps, customer_satisfaction_score
+enterprise|financial_services|customer_profiles|profile_id, customer_id, income_range, credit_score, employment_status, financial_goals, risk_tolerance, kyc_status
+enterprise|financial_services|loan_applications|application_id, customer_id, loan_type, requested_amount, application_date, approval_status, interest_rate, loan_term_months
+enterprise|financial_services|credit_assessments|assessment_id, customer_id, assessment_date, credit_score, debt_to_income_ratio, employment_verification, recommendation
+enterprise|financial_services|payment_history|payment_id, customer_id, loan_id, payment_date, payment_amount, principal_amount, interest_amount, payment_status
+enterprise|financial_services|investment_portfolios|portfolio_id, customer_id, portfolio_type, total_value, risk_level, creation_date, last_rebalance_date
+enterprise|financial_services|insurance_policies|policy_id, customer_id, policy_type, coverage_amount, premium_amount, start_date, end_date, beneficiary_id
+enterprise|financial_services|fraud_detection|fraud_id, customer_id, transaction_id, fraud_score, detection_date, fraud_type, investigation_status, resolution_action
+enterprise|financial_services|regulatory_compliance|compliance_id, customer_id, regulation_type, compliance_status, last_review_date, next_review_date, documentation_path
+enterprise|financial_services|digital_wallet|wallet_id, customer_id, wallet_balance, currency_type, last_transaction_date, security_level, linked_accounts
+enterprise|financial_services|micro_loans|micro_loan_id, customer_id, loan_amount, disbursement_date, repayment_schedule, collateral_type, guarantor_id
+enterprise|financial_services|savings_accounts|account_id, customer_id, account_type, current_balance, interest_rate, opening_date, minimum_balance, account_status
+enterprise|financial_services|transaction_logs|log_id, customer_id, transaction_type, amount, transaction_date, merchant_id, location, authorization_code
+enterprise|enterprise_network|corporate_clients|client_id, company_name, industry_sector, employee_count, contract_start_date, contract_value, service_tier, account_manager_id
+enterprise|enterprise_network|network_solutions|solution_id, client_id, solution_type, bandwidth_mbps, redundancy_level, sla_uptime_percentage, monthly_cost
+enterprise|enterprise_network|service_level_agreements|sla_id, client_id, service_type, uptime_guarantee, response_time_hours, penalty_clauses, review_frequency
+enterprise|enterprise_network|bandwidth_usage|usage_id, client_id, measurement_date, upload_usage_gb, download_usage_gb, peak_utilization_percentage
+enterprise|enterprise_network|security_services|security_id, client_id, service_type, threat_level, last_scan_date, vulnerabilities_found, mitigation_status
+enterprise|enterprise_network|vpn_connections|vpn_id, client_id, connection_type, endpoint_count, encryption_level, connection_uptime_hours, data_transferred_gb
+enterprise|enterprise_network|managed_services|service_id, client_id, service_category, service_description, monthly_fee, service_start_date, renewal_date
+enterprise|enterprise_network|network_monitoring|monitor_id, client_id, monitoring_date, network_availability, performance_metrics, alert_count, incident_resolution_time
+enterprise|enterprise_network|backup_solutions|backup_id, client_id, backup_type, storage_capacity_gb, backup_frequency, last_backup_date, restore_test_status
+enterprise|enterprise_network|cloud_services|cloud_id, client_id, service_provider, instance_type, cpu_cores, memory_gb, storage_gb, monthly_usage_hours
+enterprise|enterprise_network|disaster_recovery|dr_id, client_id, recovery_site_location, rto_hours, rpo_hours, last_test_date, test_success_rate
+enterprise|enterprise_network|network_infrastructure|infra_id, client_id, equipment_type, model_number, installation_date, warranty_status, maintenance_schedule
+enterprise|business_consulting|client_engagements|engagement_id, client_id, project_name, consulting_type, start_date, end_date, project_status, total_budget
+enterprise|business_consulting|consultant_assignments|assignment_id, engagement_id, consultant_id, role, billable_hours, hourly_rate, assignment_start, assignment_end
+enterprise|business_consulting|project_deliverables|deliverable_id, engagement_id, deliverable_name, due_date, completion_date, quality_score, client_approval_status
+enterprise|business_consulting|industry_analysis|analysis_id, industry_sector, analysis_date, market_size, growth_rate, key_players, competitive_landscape
+enterprise|business_consulting|client_assessments|assessment_id, client_id, assessment_type, maturity_score, improvement_areas, recommendations, assessment_date
+enterprise|business_consulting|best_practices|practice_id, industry_sector, practice_category, practice_description, implementation_complexity, success_rate_percentage
+enterprise|business_consulting|change_management|change_id, engagement_id, change_type, stakeholder_impact, resistance_level, training_requirements, success_metrics
+enterprise|business_consulting|roi_analysis|roi_id, engagement_id, investment_amount, projected_savings, payback_period_months, risk_factors, confidence_level
+enterprise|business_consulting|stakeholder_mapping|stakeholder_id, engagement_id, stakeholder_name, influence_level, interest_level, communication_frequency
+enterprise|business_consulting|knowledge_base|kb_id, topic_category, content_type, creation_date, last_updated, usage_count, expert_rating, access_level
+enterprise|business_consulting|training_programs|program_id, program_name, target_audience, duration_hours, delivery_method, certification_available, enrollment_count
+enterprise|business_consulting|market_research|research_id, research_topic, methodology, sample_size, completion_date, key_findings, confidence_interval
+enterprise|analytics|customer_segments|segment_id, segment_name, criteria, customer_count, average_revenue, churn_rate, segment_characteristics
+enterprise|analytics|churn_prediction|prediction_id, customer_id, churn_probability, model_version, prediction_date, risk_factors, recommended_actions
+enterprise|analytics|revenue_forecasting|forecast_id, business_unit, forecast_period, predicted_revenue, confidence_interval, model_accuracy, last_updated
+enterprise|analytics|campaign_performance|campaign_id, campaign_name, channel, start_date, end_date, impressions, clicks, conversions, cost_per_acquisition
+enterprise|analytics|customer_lifetime_value|clv_id, customer_id, calculated_clv, calculation_date, model_version, contributing_factors, confidence_score
+enterprise|analytics|usage_patterns|pattern_id, customer_segment, usage_metric, pattern_type, seasonality_factor, trend_direction, statistical_significance
+enterprise|analytics|competitive_intelligence|intel_id, competitor_name, metric_type, metric_value, source, collection_date, reliability_score
+enterprise|analytics|product_performance|performance_id, product_id, metric_name, metric_value, benchmark_comparison, period_start, period_end
+enterprise|analytics|geo_analytics|geo_id, region_code, metric_type, value, population_density, economic_indicator, last_updated
+enterprise|analytics|behavioral_analytics|behavior_id, customer_id, behavior_type, frequency, last_occurrence, pattern_strength, prediction_confidence
+enterprise|analytics|social_sentiment|sentiment_id, mention_date, platform, sentiment_score, topic_category, influence_score, geographic_region
+enterprise|analytics|real_time_metrics|metric_id, timestamp, metric_name, current_value, threshold_value, alert_triggered, data_source
+enterprise|data_warehouse|fact_sales|sale_id, customer_id, product_id, sale_date, quantity, unit_price, total_amount, sales_rep_id, region_id
+enterprise|data_warehouse|fact_usage|usage_fact_id, customer_id, service_id, usage_date, usage_quantity, usage_type, billing_amount, time_period
+enterprise|data_warehouse|dim_customers|customer_key, customer_id, customer_name, customer_type, registration_date, current_status, lifetime_value
+enterprise|data_warehouse|dim_products|product_key, product_id, product_name, product_category, product_line, launch_date, discontinuation_date
+enterprise|data_warehouse|dim_time|date_key, full_date, day_of_week, month_name, quarter, year, is_holiday, is_weekend
+enterprise|data_warehouse|dim_geography|geo_key, country_code, country_name, region_name, city_name, postal_code, time_zone
+enterprise|data_warehouse|fact_financial|financial_id, account_id, transaction_date, transaction_amount, transaction_type, currency_code
+enterprise|data_warehouse|dim_services|service_key, service_id, service_name, service_category, service_tier, pricing_model
+enterprise|data_warehouse|fact_network|network_fact_id, tower_id, measurement_date, traffic_volume, performance_score, incident_count
+enterprise|data_warehouse|dim_channels|channel_key, channel_id, channel_name, channel_type, commission_rate, manager_id
+enterprise|data_warehouse|agg_monthly_revenue|agg_id, year_month, business_unit, total_revenue, customer_count, average_revenue_per_user
+enterprise|data_warehouse|agg_daily_usage|agg_usage_id, usage_date, service_type, total_usage, unique_users, peak_usage_hour
+enterprise|operations|system_logs|log_id, system_name, log_level, timestamp, message, user_id, session_id, ip_address
+enterprise|operations|error_tracking|error_id, system_component, error_type, error_message, occurrence_count, first_seen, last_seen, resolution_status
+enterprise|operations|performance_monitoring|monitor_id, service_name, response_time_ms, throughput_rps, error_rate_percentage, cpu_utilization, memory_usage
+enterprise|operations|backup_schedules|schedule_id, database_name, backup_type, frequency, retention_days, last_backup_time, backup_size_gb, success_status
+enterprise|operations|security_events|event_id, event_type, severity, source_ip, target_system, detection_time, response_action, investigation_status
+enterprise|operations|capacity_metrics|capacity_id, resource_type, current_usage, maximum_capacity, utilization_percentage, growth_trend, alert_threshold
+enterprise|operations|batch_jobs|job_id, job_name, schedule_time, start_time, end_time, status, records_processed, error_count
+enterprise|operations|api_usage|api_id, endpoint, request_count, response_time_avg, error_rate, rate_limit_hits, timestamp, client_id
+enterprise|operations|database_performance|db_performance_id, database_name, query_type, execution_time_ms, rows_affected, index_usage, lock_waits
+enterprise|operations|infrastructure_costs|cost_id, resource_type, cost_center, monthly_cost, usage_metrics, cost_per_unit, budget_variance
+enterprise|operations|maintenance_windows|window_id, system_name, maintenance_type, scheduled_start, scheduled_end, actual_duration, impact_level
+enterprise|operations|compliance_audits|audit_id, audit_type, auditor_name, audit_date, findings_count, compliance_score, remediation_deadline
+enterprise|master_data|reference_countries|country_id, country_code, country_name, region, currency_code, phone_prefix, time_zone
+enterprise|master_data|reference_currencies|currency_id, currency_code, currency_name, exchange_rate, last_updated, is_active
+enterprise|master_data|reference_products|ref_product_id, product_code, product_name, category, subcategory, unit_of_measure, standard_price
+enterprise|master_data|reference_regions|region_id, region_code, region_name, country_id, population, area_sq_km, economic_zone
+enterprise|master_data|reference_industries|industry_id, industry_code, industry_name, sector, description, regulatory_requirements
+enterprise|master_data|reference_job_titles|title_id, title_name, level, department, salary_range_min, salary_range_max
+enterprise|master_data|reference_error_codes|error_code, error_description, system_component, severity_level, resolution_steps
+enterprise|master_data|reference_service_categories|category_id, category_name, parent_category, description, billing_model
+enterprise|master_data|reference_compliance_standards|standard_id, standard_name, issuing_body, version, effective_date, mandatory_compliance
+enterprise|master_data|reference_network_technologies|tech_id, technology_name, generation, frequency_bands, max_speed_mbps, deployment_cost
+enterprise|master_data|reference_payment_methods|payment_id, method_name, provider, processing_fee_percentage, security_level, supported_currencies
+enterprise|master_data|reference_tax_rates|tax_id, jurisdiction, tax_type, tax_rate_percentage, effective_date, expiry_date
+enterprise|staging|stg_customer_import|import_id, source_system, import_date, customer_data, validation_status, error_messages, processed_flag
+enterprise|staging|stg_billing_import|billing_import_id, source_file, import_timestamp, record_count, validation_errors, processing_status
+enterprise|staging|stg_network_data|network_import_id, data_source, collection_time, raw_data, data_quality_score, transformation_status
+enterprise|staging|stg_external_feeds|feed_id, feed_name, provider, last_update, record_count, data_format, ingestion_status
+enterprise|staging|stg_integration_queue|queue_id, source_system, target_system, message_type, payload, priority, processing_status, retry_count
+enterprise|staging|stg_data_validation|validation_id, table_name, validation_rule, validation_result, error_count, validation_timestamp
+enterprise|staging|stg_transform_logs|transform_id, transformation_name, source_table, target_table, records_in, records_out, execution_time
+enterprise|staging|stg_cleansing_rules|rule_id, field_name, rule_type, rule_definition, success_rate, last_applied, is_active
+enterprise|staging|stg_lookup_tables|lookup_id, lookup_name, source_value, target_value, mapping_type, effective_date, created_by
+enterprise|staging|stg_exception_handling|exception_id, process_name, exception_type, exception_message, resolution_action, status
+enterprise|staging|stg_quality_metrics|quality_id, dataset_name, completeness_score, accuracy_score, consistency_score, timeliness_score
+enterprise|staging|stg_audit_trail|audit_id, operation_type, table_affected, user_id, timestamp, old_values, new_values
+enterprise|telecom_core|number_portability|port_id, customer_id, old_provider, new_provider, phone_number, port_request_date, completion_date, port_status
+enterprise|telecom_core|sim_card_management|sim_id, iccid, customer_id, activation_date, sim_status, pin_code, puk_code, last_used_date
+enterprise|telecom_core|service_requests|request_id, customer_id, request_type, priority, status, created_date, assigned_agent, resolution_time
+enterprise|telecom_core|network_optimization|optimization_id, tower_id, optimization_type, implementation_date, performance_improvement, cost_savings
+enterprise|telecom_core|customer_preferences|preference_id, customer_id, communication_channel, language_preference, marketing_consent, notification_settings
+enterprise|telecom_prepaid|bonus_allocations|bonus_id, customer_id, bonus_type, bonus_amount, granted_date, expiry_date, usage_conditions, remaining_balance
+enterprise|telecom_prepaid|tariff_plans|tariff_id, plan_name, base_rate, peak_rate, off_peak_rate, weekend_rate, effective_date, region_applicability
+enterprise|telecom_prepaid|scratch_cards|card_id, serial_number, denomination, activation_code, manufacture_date, expiry_date, distribution_channel, redemption_status
+enterprise|telecom_prepaid|auto_recharge|auto_recharge_id, customer_id, recharge_amount, trigger_balance, frequency, payment_method, next_recharge_date, is_active
+enterprise|telecom_prepaid|usage_alerts|alert_id, customer_id, alert_type, threshold_value, notification_method, last_triggered, alert_status
+enterprise|telecom_network|fiber_infrastructure|fiber_id, cable_type, installation_date, length_km, capacity_gbps, route_path, maintenance_status
+enterprise|telecom_network|equipment_inventory|equipment_id, equipment_type, manufacturer, model, serial_number, location, installation_date, warranty_period
+enterprise|telecom_network|power_systems|power_id, site_id, power_source, backup_duration_hours, fuel_capacity, last_maintenance, efficiency_rating
+enterprise|telecom_network|environmental_monitoring|env_id, site_id, temperature, humidity, air_quality_index, noise_level, monitoring_timestamp
+enterprise|telecom_network|regulatory_compliance|compliance_id, regulation_type, compliance_status, audit_date, certificate_expiry, responsible_officer
+enterprise|financial_services|merchant_accounts|merchant_id, business_name, business_type, account_status, settlement_account, commission_rate, onboarding_date
+enterprise|financial_services|pos_transactions|pos_id, merchant_id, transaction_amount, card_type, transaction_timestamp, authorization_code, settlement_status
+enterprise|financial_services|risk_assessments|risk_id, customer_id, assessment_type, risk_score, assessment_date, mitigation_measures, review_frequency
+enterprise|financial_services|currency_exchange|exchange_id, base_currency, target_currency, exchange_rate, transaction_amount, commission_fee, exchange_timestamp
+enterprise|financial_services|escrow_services|escrow_id, buyer_id, seller_id, escrow_amount, terms_conditions, release_conditions, status, creation_date
+enterprise|financial_services|credit_bureau_reports|report_id, customer_id, bureau_name, report_date, credit_score, payment_history, outstanding_debts
+enterprise|financial_services|financial_planning|plan_id, customer_id, goal_type, target_amount, timeline_months, monthly_contribution, progress_percentage
+enterprise|financial_services|remittance_services|remittance_id, sender_id, receiver_id, send_amount, receive_amount, exchange_rate, transfer_fee, corridor
+enterprise|financial_services|asset_management|asset_id, customer_id, asset_type, asset_value, acquisition_date, current_market_value, performance_rating
+enterprise|enterprise_network|data_center_services|dc_service_id, client_id, rack_space, power_allocation_kw, cooling_requirements, security_level, monthly_cost
+enterprise|enterprise_network|unified_communications|uc_id, client_id, service_type, user_count, feature_set, integration_level, support_tier
+enterprise|enterprise_network|network_assessment|assessment_id, client_id, assessment_date, current_infrastructure, recommendations, priority_level, estimated_cost
+enterprise|enterprise_network|contract_management|contract_id, client_id, contract_type, start_date, end_date, auto_renewal, penalty_clauses, contract_value
+enterprise|enterprise_network|incident_management|incident_id, client_id, incident_type, severity, reported_time, resolution_time, root_cause, preventive_measures
+enterprise|enterprise_network|performance_reports|report_id, client_id, reporting_period, uptime_percentage, performance_metrics, sla_compliance, improvement_areas
+enterprise|enterprise_network|network_design|design_id, client_id, topology_type, bandwidth_requirements, redundancy_level, security_requirements, implementation_timeline
+enterprise|enterprise_network|vendor_management|vendor_id, vendor_name, service_category, contract_terms, performance_rating, last_review_date, renewal_status
+enterprise|enterprise_network|cost_optimization|optimization_id, client_id, current_costs, proposed_savings, implementation_effort, payback_period, approval_status
+enterprise|business_consulting|process_improvement|improvement_id, client_id, process_name, current_efficiency, target_efficiency, implementation_plan, success_metrics
+enterprise|business_consulting|digital_transformation|transformation_id, client_id, transformation_scope, technology_stack, timeline_months, budget_allocation, risk_mitigation
+enterprise|business_consulting|organizational_design|design_id, client_id, current_structure, proposed_structure, change_impact, implementation_phases, success_indicators
+enterprise|business_consulting|performance_benchmarking|benchmark_id, client_id, benchmark_category, industry_average, client_performance, performance_gap, improvement_roadmap
+enterprise|business_consulting|cultural_assessment|culture_id, client_id, assessment_dimensions, maturity_scores, cultural_barriers, development_priorities
+enterprise|business_consulting|innovation_workshops|workshop_id, client_id, workshop_theme, participant_count, innovation_ideas, prioritization_criteria, next_steps
+enterprise|business_consulting|sustainability_initiatives|initiative_id, client_id, sustainability_goal, baseline_metrics, target_metrics, implementation_cost, environmental_impact
+enterprise|business_consulting|leadership_development|development_id, client_id, leadership_level, competency_gaps, development_plan, coaching_hours, progress_assessment
+enterprise|business_consulting|merger_integration|integration_id, acquiring_company, target_company, integration_phase, synergy_targets, cultural_alignment, timeline_milestones
+enterprise|analytics|predictive_models|model_id, model_name, algorithm_type, training_data_size, accuracy_score, deployment_date, model_version, feature_importance
+enterprise|analytics|ab_testing|test_id, test_name, hypothesis, control_group_size, treatment_group_size, test_duration, statistical_significance, winning_variant
+enterprise|analytics|cohort_analysis|cohort_id, cohort_definition, time_period, retention_rate, revenue_per_cohort, churn_characteristics, behavioral_patterns
+enterprise|analytics|attribution_modeling|attribution_id, campaign_id, touchpoint_sequence, conversion_value, attribution_model, credit_distribution, model_accuracy
+enterprise|analytics|customer_journey|journey_id, customer_id, touchpoint_sequence, channel_interactions, conversion_events, journey_duration, satisfaction_score
+enterprise|analytics|price_optimization|price_id, product_id, current_price, optimal_price, demand_elasticity, revenue_impact, competitive_position
+enterprise|analytics|fraud_scoring|fraud_score_id, transaction_id, risk_factors, fraud_probability, model_version, decision_threshold, false_positive_rate
+enterprise|analytics|recommendation_engine|recommendation_id, customer_id, recommended_products, confidence_score, recommendation_type, click_through_rate, conversion_rate
+enterprise|analytics|seasonal_forecasting|forecast_id, metric_name, seasonal_pattern, forecast_horizon, confidence_interval, historical_accuracy, adjustment_factors
+enterprise|data_warehouse|fact_complaints|complaint_id, customer_id, complaint_type, severity_level, complaint_date, resolution_date, satisfaction_rating, cost_impact
+enterprise|data_warehouse|fact_marketing|campaign_fact_id, campaign_id, customer_id, channel_id, impression_date, response_flag, conversion_flag, revenue_attributed
+enterprise|data_warehouse|dim_campaigns|campaign_key, campaign_id, campaign_name, campaign_type, start_date, end_date, budget_amount, target_audience
+enterprise|data_warehouse|dim_agents|agent_key, agent_id, agent_name, department, hire_date, skill_level, performance_rating, current_status
+enterprise|data_warehouse|fact_inventory|inventory_id, product_id, location_id, stock_level, reorder_point, last_movement_date, inventory_value
+enterprise|data_warehouse|dim_suppliers|supplier_key, supplier_id, supplier_name, supplier_type, country, payment_terms, quality_rating
+enterprise|data_warehouse|fact_maintenance|maintenance_id, equipment_id, maintenance_type, scheduled_date, actual_date, cost, downtime_hours
+enterprise|data_warehouse|agg_customer_metrics|metric_id, customer_segment, metric_period, total_customers, average_revenue, churn_count, acquisition_cost
+enterprise|data_warehouse|fact_support|support_id, ticket_id, agent_id, resolution_time, customer_satisfaction, escalation_flag, cost_to_serve
+enterprise|operations|change_management|change_id, change_type, requestor, implementation_date, rollback_plan, success_criteria, approval_status, impact_assessment
+enterprise|operations|release_management|release_id, release_version, deployment_date, environment, feature_count, defect_count, rollback_executed, performance_impact
+enterprise|operations|incident_response|response_id, incident_id, response_team, escalation_level, communication_plan, resolution_steps, lessons_learned
+enterprise|operations|service_catalog|service_id, service_name, service_owner, availability_sla, performance_sla, cost_per_request, approval_workflow
+enterprise|operations|asset_tracking|asset_id, asset_type, location, owner, purchase_date, depreciation_value, maintenance_schedule, disposal_date
+enterprise|operations|vulnerability_management|vuln_id, system_affected, vulnerability_type, severity_score, discovery_date, patch_available, remediation_status
+enterprise|operations|configuration_management|config_id, component_name, version, configuration_baseline, change_history, compliance_status, last_audit_date
+enterprise|operations|knowledge_management|kb_article_id, title, category, author, creation_date, last_updated, usage_count, effectiveness_rating
+enterprise|telecom_core|subscriber_demographics|demo_id, customer_id, age_group, gender, education_level, occupation, income_bracket, family_size, location_type
+enterprise|telecom_core|device_compatibility|compat_id, device_model, network_type, supported_bands, software_version, certification_status, launch_date
+enterprise|telecom_core|international_rates|rate_id, destination_country, service_type, rate_per_unit, currency, effective_date, promotional_rate, validity_period
+enterprise|telecom_core|network_congestion|congestion_id, tower_id, measurement_time, traffic_load_percentage, user_count, service_degradation, mitigation_actions
+enterprise|telecom_core|regulatory_reports|report_id, report_type, submission_date, regulatory_body, compliance_status, penalties, corrective_actions
+enterprise|telecom_prepaid|voucher_management|voucher_id, voucher_code, denomination, expiry_date, distribution_channel, activation_status, customer_id
+enterprise|telecom_prepaid|data_rollover|rollover_id, customer_id, previous_balance_mb, rollover_amount_mb, rollover_date, expiry_date, usage_priority
+enterprise|telecom_prepaid|social_media_packs|pack_id, platform_name, data_allowance_mb, validity_hours, price, customer_segment, activation_count
+enterprise|telecom_prepaid|international_roaming|roaming_id, customer_id, visited_country, roaming_partner, service_type, usage_amount, charges, billing_date
+enterprise|telecom_prepaid|balance_sharing|sharing_id, primary_customer_id, secondary_customer_id, shared_amount, transaction_date, approval_status
+enterprise|telecom_network|small_cells|cell_id, cell_type, coverage_area_m, installation_location, backhaul_type, power_consumption, commissioning_date
+enterprise|telecom_network|network_slicing|slice_id, slice_type, bandwidth_allocation, latency_requirement, tenant_id, sla_parameters, deployment_status
+enterprise|telecom_network|edge_computing|edge_id, edge_location, computing_capacity, storage_capacity, connected_devices, latency_ms, utilization_rate
+enterprise|telecom_network|iot_connectivity|iot_id, device_type, connectivity_protocol, data_plan, monthly_fee, device_count, network_coverage
+enterprise|telecom_network|network_automation|automation_id, process_name, trigger_conditions, automation_script, success_rate, last_execution, error_logs
+enterprise|financial_services|blockchain_transactions|blockchain_id, transaction_hash, wallet_address, transaction_amount, cryptocurrency_type, confirmation_time, gas_fee
+enterprise|financial_services|peer_to_peer_lending|p2p_id, lender_id, borrower_id, loan_amount, interest_rate, loan_term, risk_grade, funding_status
+enterprise|financial_services|robo_advisor|advisor_id, customer_id, investment_strategy, portfolio_allocation, rebalancing_frequency, performance_ytd, fee_percentage
+enterprise|financial_services|open_banking|api_id, bank_partner, service_type, api_calls_count, response_time_ms, success_rate, compliance_status
+enterprise|financial_services|neo_banking|neobank_id, customer_id, account_type, digital_features, monthly_fee, transaction_limits, onboarding_channel
+enterprise|financial_services|trade_finance|trade_id, exporter_id, importer_id, commodity_type, trade_value, letter_of_credit, shipping_documents, settlement_status
+enterprise|financial_services|alternative_credit|alt_credit_id, customer_id, data_sources, credit_score_alt, approval_probability, loan_offer, decisioning_time
+enterprise|financial_services|financial_wellness|wellness_id, customer_id, financial_health_score, savings_rate, debt_ratio, improvement_recommendations
+enterprise|financial_services|syndicated_loans|syndicate_id, lead_bank, participant_banks, loan_amount, interest_margin, syndication_fee, loan_purpose
+enterprise|enterprise_network|sd_wan_services|sdwan_id, client_id, site_count, bandwidth_per_site, routing_policy, security_features, monthly_cost, deployment_status
+enterprise|enterprise_network|iot_enterprise|iot_enterprise_id, client_id, device_count, connectivity_type, data_processing, analytics_platform, security_level
+enterprise|enterprise_network|edge_analytics|edge_analytics_id, client_id, data_sources, processing_capacity, real_time_alerts, storage_retention, cost_model
+enterprise|enterprise_network|network_orchestration|orchestration_id, client_id, automation_level, policy_management, service_chaining, deployment_time
+enterprise|enterprise_network|hybrid_cloud|hybrid_id, client_id, on_premise_resources, cloud_resources, integration_method, data_sync_frequency, security_model
+enterprise|enterprise_network|5g_enterprise|enterprise_5g_id, client_id, use_case, bandwidth_guarantee, latency_sla, device_density, coverage_area
+enterprise|enterprise_network|network_analytics|analytics_id, client_id, monitoring_scope, kpi_dashboard, anomaly_detection, predictive_maintenance, reporting_frequency
+enterprise|enterprise_network|zero_trust_security|zt_id, client_id, identity_verification, device_trust, network_segmentation, policy_enforcement, threat_detection
+enterprise|enterprise_network|digital_workplace|workplace_id, client_id, collaboration_tools, device_management, user_experience_score, adoption_rate
+enterprise|business_consulting|agile_transformation|agile_id, client_id, current_methodology, target_framework, team_count, training_hours, velocity_improvement
+enterprise|business_consulting|data_governance|governance_id, client_id, data_assets, governance_framework, stewardship_model, compliance_requirements, maturity_score
+enterprise|business_consulting|customer_experience|cx_id, client_id, touchpoint_mapping, satisfaction_metrics, experience_gaps, improvement_initiatives, roi_projection
+enterprise|business_consulting|supply_chain_optimization|supply_id, client_id, current_efficiency, optimization_areas, cost_reduction_target, implementation_timeline
+enterprise|business_consulting|risk_management|risk_mgmt_id, client_id, risk_categories, risk_appetite, mitigation_strategies, monitoring_framework, compliance_status
+enterprise|business_consulting|business_intelligence|bi_id, client_id, data_sources, dashboard_count, user_adoption, decision_impact, system_integration
+enterprise|business_consulting|change_readiness|readiness_id, client_id, stakeholder_analysis, resistance_factors, communication_plan, training_needs, success_probability
+enterprise|business_consulting|operational_excellence|opex_id, client_id, process_optimization, waste_reduction, quality_improvement, employee_engagement, cost_savings
+enterprise|business_consulting|strategic_planning|strategy_id, client_id, vision_statement, strategic_objectives, action_plans, resource_allocation, milestone_tracking
+enterprise|analytics|machine_learning|ml_id, model_type, algorithm_name, training_dataset, feature_count, accuracy_metrics, deployment_environment, model_drift
+enterprise|analytics|data_science|ds_project_id, project_name, data_sources, hypothesis, methodology, statistical_significance, business_impact, publication_status
+enterprise|analytics|business_intelligence|bi_dashboard_id, dashboard_name, data_refresh_frequency, user_count, query_performance, visualization_type
+enterprise|analytics|data_mining|mining_id, dataset_name, mining_technique, pattern_discovered, confidence_level, support_threshold, actionable_insights
+enterprise|analytics|statistical_analysis|stats_id, analysis_type, sample_size, statistical_test, p_value, effect_size, confidence_interval, conclusion
+enterprise|analytics|text_analytics|text_id, document_source, sentiment_analysis, topic_modeling, entity_extraction, language_detection, processing_time
+enterprise|analytics|time_series_analysis|timeseries_id, metric_name, seasonality_detected, trend_direction, forecast_accuracy, anomaly_count, model_parameters
+enterprise|analytics|network_analytics|network_id, node_count, edge_count, centrality_measures, community_detection, path_analysis, influence_score
+enterprise|analytics|geospatial_analytics|geo_analytics_id, location_data, spatial_analysis, clustering_results, proximity_analysis, territory_optimization
+enterprise|data_warehouse|fact_hr|hr_fact_id, employee_id, performance_rating, training_hours, absence_days, overtime_hours, department_id, review_period
+enterprise|data_warehouse|fact_procurement|procurement_id, supplier_id, purchase_order_id, item_count, total_cost, delivery_time, quality_score, payment_terms
+enterprise|data_warehouse|dim_employees|employee_key, employee_id, full_name, job_title, department, hire_date, manager_id, employment_status
+enterprise|data_warehouse|dim_locations|location_key, location_id, address, city, state, country, postal_code, facility_type, capacity
+enterprise|data_warehouse|fact_quality|quality_id, product_id, inspection_date, defect_count, quality_score, inspector_id, batch_number, corrective_action
+enterprise|data_warehouse|dim_vendors|vendor_key, vendor_id, vendor_name, vendor_category, performance_rating, contract_status, payment_terms
+enterprise|data_warehouse|fact_training|training_id, employee_id, course_id, completion_date, score, certification_earned, training_cost, effectiveness_rating
+enterprise|data_warehouse|agg_operational_kpis|kpi_id, department, metric_name, target_value, actual_value, variance_percentage, period_start, period_end
+enterprise|data_warehouse|fact_sustainability|sustainability_id, facility_id, energy_consumption, water_usage, waste_generated, carbon_footprint, reporting_period
+enterprise|operations|disaster_recovery|dr_plan_id, system_name, recovery_objective, backup_location, test_frequency, last_test_date, test_success_rate
+enterprise|operations|business_continuity|bc_plan_id, business_process, criticality_level, recovery_strategy, resource_requirements, contact_list, plan_status
+enterprise|operations|patch_management|patch_id, system_affected, patch_type, severity_level, installation_date, testing_status, rollback_plan
+enterprise|operations|license_management|license_id, software_name, license_type, quantity_purchased, quantity_used, expiry_date, renewal_cost, compliance_status
+enterprise|operations|data_lifecycle|lifecycle_id, data_category, retention_period, archival_policy, disposal_method, compliance_requirements, last_review_date
+enterprise|operations|service_desk|ticket_id, requester_id, service_category, priority_level, assignment_group, resolution_time, satisfaction_rating
+enterprise|operations|capacity_planning|capacity_plan_id, resource_type, current_utilization, projected_growth, scaling_timeline, budget_impact, approval_status
+enterprise|operations|vendor_performance|vendor_perf_id, vendor_name, service_category, sla_compliance, quality_metrics, cost_efficiency, relationship_score
+enterprise|operations|cloud_governance|governance_id, cloud_provider, resource_type, cost_optimization, security_compliance, policy_violations, remediation_actions
+enterprise|master_data|reference_skills|skill_id, skill_name, skill_category, proficiency_levels, certification_available, market_demand, training_duration
+enterprise|master_data|reference_departments|dept_id, department_name, department_code, cost_center, manager_id, budget_allocation, headcount_target
+enterprise|master_data|reference_vendors|vendor_ref_id, vendor_code, vendor_name, vendor_type, preferred_status, payment_terms, quality_certification
+enterprise|master_data|reference_locations|location_ref_id, location_code, facility_name, address, coordinates, facility_type, operational_status
+enterprise|master_data|reference_assets|asset_ref_id, asset_category, asset_subcategory, depreciation_method, useful_life_years, maintenance_frequency
+enterprise|master_data|reference_security_roles|role_id, role_name, permission_level, system_access, data_classification, approval_required
+enterprise|master_data|reference_chart_accounts|account_id, account_number, account_name, account_type, parent_account, active_status, budget_category
+enterprise|master_data|reference_cost_centers|cost_center_id, cost_center_code, description, department, budget_holder, expense_categories
+enterprise|master_data|reference_workflow_states|state_id, workflow_name, state_name, state_order, transition_rules, approval_required, notification_list
+enterprise|staging|stg_social_media|social_id, platform, post_content, engagement_metrics, sentiment_score, processing_status, ingestion_timestamp
+enterprise|staging|stg_iot_sensors|sensor_data_id, device_id, sensor_type, measurement_value, measurement_unit, data_quality_flag, batch_processing_id
+enterprise|staging|stg_third_party_apis|api_data_id, api_source, endpoint_name, response_payload, status_code, processing_timestamp, validation_errors
+enterprise|staging|stg_file_uploads|upload_id, file_name, file_size, upload_timestamp, file_format, validation_status, processing_queue_position
+enterprise|staging|stg_real_time_streams|stream_id, data_source, message_content, partition_key, offset_position, processing_lag_ms, error_handling_status
