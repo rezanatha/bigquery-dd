@@ -3,7 +3,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from typing import List
 import pickle
-from components import EmbeddingGenerator
+from semantic import EmbeddingGenerator
 
 
 def create_text(row):

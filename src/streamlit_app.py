@@ -1,38 +1,52 @@
 import streamlit as st
 import pandas as pd
-from search import load_search_components, search_similar_tables
-
+from semantic import semantic_search, EmbeddingGenerator  # noqa: F401
+from bm25 import bm25_search, BM25TableSearch  # noqa: F401
+from hybrid import HybridTableSearch
 
 # Configure page
 st.set_page_config(
-    page_title="BigQuery Data Dictionary Search",
-    page_icon="🔍",
-    layout="wide"
+    page_title="BigQuery Data Dictionary Search", page_icon="🔍", layout="wide"
 )
+
 
 @st.cache_resource
 def load_search_components_for_streamlit():
-    """Load embeddings and model (cached for performance)"""
+    """Load hybrid search components (cached for performance)"""
     try:
-        embedding_data, generator = load_search_components()
-        return embedding_data, generator
+        # Load semantic search components
+        semantic_component = semantic_search.load_search_components()
+
+        # Load BM25 search
+        bm25_component = bm25_search.load_search_components()
+
+        # Initialize hybrid search
+        hybrid_searcher = HybridTableSearch(semantic_component, bm25_component)
+
+        return hybrid_searcher
+
     except Exception as e:
         st.error(f"Error loading search components: {e}")
-        return None, None
+        return None
+
 
 def main():
     st.title("🔍 BigQuery Data Dictionary Search")
-    st.markdown("Search through table metadata using semantic similarity")
+    st.markdown(
+        "Search through table metadata using semantic similarity and keyword matching"
+    )
 
     # Initialize session state
-    if 'search_query' not in st.session_state:
+    if "search_query" not in st.session_state:
         st.session_state.search_query = ""
 
-    # Load components
-    embedding_data, generator = load_search_components()
+    # Load hybrid search components
+    hybrid_searcher = load_search_components_for_streamlit()
 
-    if embedding_data is None or generator is None:
-        st.error("Failed to load search components. Please check your model files.")
+    if hybrid_searcher is None:
+        st.error(
+            "Failed to load hybrid search components. Please check your model files."
+        )
         return
 
     # Search interface
@@ -42,12 +56,25 @@ def main():
         query = st.text_input(
             "Search for tables:",
             value=st.session_state.search_query,
-            placeholder="e.g., 'fraud detection tables', 'customer analytics', 'network performance'...",
-            help="Enter keywords to find relevant tables"
+            placeholder=(
+                "e.g., 'fraud detection tables', 'customer analytics', "
+                "'network performance'..."
+            ),
+            help="Enter keywords to find relevant tables",
         )
 
     with col2:
-        top_k = st.number_input("Number of results:", min_value=1, max_value=50, value=10)
+        top_k = st.number_input(
+            "Number of results:", min_value=1, max_value=50, value=10
+        )
+
+    # Search options
+    with st.expander("🔧 Search Options", expanded=False):
+        search_method = st.selectbox(
+            "Search Method:",
+            ["Hybrid (Semantic + Keyword)", "Semantic Only", "Keyword Only"],
+            index=0,
+        )
 
     # Search button and results
     search_triggered = st.button("🔍 Search", type="primary")
@@ -55,7 +82,12 @@ def main():
     if search_triggered and query:
         if query.strip():
             with st.spinner("Searching..."):
-                results = search_similar_tables(query, embedding_data, generator, top_k=top_k)
+                if search_method == "Hybrid (Semantic + Keyword)":
+                    results = hybrid_searcher.search_hybrid(query, top_k=top_k)
+                elif search_method == "Semantic Only":
+                    results = hybrid_searcher.search_semantic(query, top_k=top_k)
+                else:  # Keyword Only
+                    results = hybrid_searcher.search_bm25(query, top_k=top_k)
 
             if results:
                 st.success(f"Found {len(results)} results for: '{query}'")
@@ -69,22 +101,71 @@ def main():
                             st.metric("Rank", f"#{i}")
 
                         with col2:
-                            table_name = f"{metadata.get('table_catalog', 'N/A')}.{metadata.get('table_schema', 'N/A')}.{metadata.get('table_name', 'N/A')}"
+                            table_name = (
+                                f"{metadata.get('table_catalog', 'N/A')}."
+                                f"{metadata.get('table_schema', 'N/A')}."
+                                f"{metadata.get('table_name', 'N/A')}"
+                            )
                             st.subheader(table_name)
 
                             # Show columns in expandable section
-                            columns = metadata.get('all_columns', 'N/A')
+                            columns = metadata.get("all_columns", "N/A")
                             with st.expander("Show columns"):
                                 st.write(columns)
 
                         with col3:
-                            # Similarity score with color coding
-                            if score >= 0.6:
-                                st.metric("Similarity", f"{score:.3f}", delta="High", delta_color="normal")
-                            elif score >= 0.4:
-                                st.metric("Similarity", f"{score:.3f}", delta="Medium", delta_color="off")
+                            # Score with color coding (adjusted for hybrid scores)
+                            score_label = (
+                                "Similarity"
+                                if search_method == "Semantic Only"
+                                else "Score"
+                            )
+                            if search_method == "Semantic Only":
+                                # Use semantic score thresholds
+                                if score >= 0.6:
+                                    st.metric(
+                                        score_label,
+                                        f"{score:.3f}",
+                                        delta="High",
+                                        delta_color="normal",
+                                    )
+                                elif score >= 0.4:
+                                    st.metric(
+                                        score_label,
+                                        f"{score:.3f}",
+                                        delta="Medium",
+                                        delta_color="off",
+                                    )
+                                else:
+                                    st.metric(
+                                        score_label,
+                                        f"{score:.3f}",
+                                        delta="Low",
+                                        delta_color="inverse",
+                                    )
                             else:
-                                st.metric("Similarity", f"{score:.3f}", delta="Low", delta_color="inverse")
+                                # Use different thresholds for hybrid/BM25 scores
+                                if score >= 0.02:
+                                    st.metric(
+                                        score_label,
+                                        f"{score:.4f}",
+                                        delta="High",
+                                        delta_color="normal",
+                                    )
+                                elif score >= 0.01:
+                                    st.metric(
+                                        score_label,
+                                        f"{score:.4f}",
+                                        delta="Medium",
+                                        delta_color="off",
+                                    )
+                                else:
+                                    st.metric(
+                                        score_label,
+                                        f"{score:.4f}",
+                                        delta="Low",
+                                        delta_color="inverse",
+                                    )
 
                         st.divider()
 
@@ -98,22 +179,39 @@ def main():
                     st.metric("Score Range", f"{max(scores) - min(scores):.3f}")
 
                     # Schema breakdown
-                    schemas = [metadata.get('table_schema', 'Unknown') for _, metadata in results]
+                    schemas = [
+                        metadata.get("table_schema", "Unknown")
+                        for _, metadata in results
+                    ]
                     schema_counts = pd.Series(schemas).value_counts()
 
                     st.subheader("Schemas Found")
                     for schema, count in schema_counts.items():
                         st.write(f"• {schema}: {count}")
 
-                    # Quality distribution
-                    high_quality = sum(1 for score, _ in results if score >= 0.6)
-                    medium_quality = sum(1 for score, _ in results if 0.4 <= score < 0.6)
-                    low_quality = sum(1 for score, _ in results if score < 0.4)
+                    # Quality distribution (adjusted for different search methods)
+                    if search_method == "Semantic Only":
+                        high_quality = sum(1 for score, _ in results if score >= 0.6)
+                        medium_quality = sum(
+                            1 for score, _ in results if 0.4 <= score < 0.6
+                        )
+                        low_quality = sum(1 for score, _ in results if score < 0.4)
 
-                    st.subheader("Quality Distribution")
-                    st.write(f"🟢 High (≥0.6): {high_quality}")
-                    st.write(f"🟡 Medium (0.4-0.6): {medium_quality}")
-                    st.write(f"🔴 Low (<0.4): {low_quality}")
+                        st.subheader("Quality Distribution")
+                        st.write(f"🟢 High (≥0.6): {high_quality}")
+                        st.write(f"🟡 Medium (0.4-0.6): {medium_quality}")
+                        st.write(f"🔴 Low (<0.4): {low_quality}")
+                    else:
+                        high_quality = sum(1 for score, _ in results if score >= 0.02)
+                        medium_quality = sum(
+                            1 for score, _ in results if 0.01 <= score < 0.02
+                        )
+                        low_quality = sum(1 for score, _ in results if score < 0.01)
+
+                        st.subheader("Quality Distribution")
+                        st.write(f"🟢 High (≥0.02): {high_quality}")
+                        st.write(f"🟡 Medium (0.01-0.02): {medium_quality}")
+                        st.write(f"🔴 Low (<0.01): {low_quality}")
 
             else:
                 st.warning("No results found. Try different keywords.")
@@ -131,7 +229,7 @@ def main():
             "user authentication",
             "data warehouse facts",
             "staging tables",
-            "compliance and audit"
+            "compliance and audit",
         ]
 
         for example in example_queries:
@@ -141,5 +239,7 @@ def main():
 
     # Footer
     st.markdown("---")
+
+
 if __name__ == "__main__":
     main()

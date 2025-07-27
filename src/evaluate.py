@@ -1,17 +1,59 @@
 import pandas as pd
 from typing import List, Dict, Set
-from search import load_search_components
+from semantic import semantic_search, EmbeddingGenerator  # noqa: F401
+from bm25 import BM25TableSearch
+from hybrid import HybridTableSearch
 import numpy as np
-from components import EmbeddingGenerator  # noqa: F401 - Required for pickle loading
 import json
 
 
 class SearchEvaluator:
-    def __init__(self, test_file_path: str):
-        """Initialize evaluator with test dataset"""
+    def __init__(self, test_file_path: str, search_type: str = "semantic"):
+        """Initialize evaluator with test dataset
+
+        Args:
+            test_file_path: Path to test dataset CSV
+            search_type: Type of search to evaluate ('semantic', 'bm25', 'hybrid')
+        """
         self.test_data = pd.read_csv(test_file_path, sep="|")
-        _, self.generator = load_search_components(use_embedding=False)
-        self.test_embeddings, self.test_metadata = self._create_test_embeddings()
+        self.search_type = search_type
+
+        # Initialize components based on search type
+        if search_type in ["semantic", "hybrid"]:
+            _, self.generator = semantic_search.load_search_components(
+                use_embedding=False
+            )
+            self.test_embeddings, self.test_metadata = self._create_test_embeddings()
+        else:
+            self.generator = None
+            self.test_embeddings = None
+            self.test_metadata = self.test_data[
+                ["table_catalog", "table_schema", "table_name", "all_columns"]
+            ].to_dict("records")
+
+        # Initialize BM25 for BM25 and hybrid search
+        if search_type in ["bm25", "hybrid"]:
+            self.bm25_searcher = BM25TableSearch()
+            self.bm25_searcher.fit(self.test_data)
+        else:
+            self.bm25_searcher = None
+
+        # Initialize hybrid searcher if needed
+        if search_type == "hybrid":
+            # Format embedding data like the semantic_search expects
+            if self.test_embeddings is not None:
+                embedding_data = {
+                    "embeddings": self.test_embeddings,
+                    "metadata": self.test_metadata,
+                }
+                semantic_components = (embedding_data, self.generator)
+            else:
+                semantic_components = (None, self.generator)
+            self.hybrid_searcher = HybridTableSearch(
+                semantic_components, self.bm25_searcher
+            )
+        else:
+            self.hybrid_searcher = None
 
     def _create_test_embeddings(self):
         """Create embeddings for the test dataset"""
@@ -86,12 +128,45 @@ class SearchEvaluator:
 
         return relevance_scores
 
+    def _search_test_data(self, query: str, top_k: int = 10):
+        """Search within test data using the configured search method"""
+
+        if self.search_type == "semantic":
+            return self._search_test_embeddings(query, top_k)
+        elif self.search_type == "bm25":
+            return self.bm25_searcher.search(query, top_k)
+        elif self.search_type == "hybrid":
+            return self.hybrid_searcher.search_hybrid(query, top_k)
+        else:
+            raise ValueError(f"Unknown search type: {self.search_type}")
+
     def _search_test_embeddings(self, query: str, top_k: int = 10):
         """Search within test embeddings using cosine similarity"""
         from sklearn.metrics.pairwise import cosine_similarity
 
+        # Check if embeddings are available
+        if self.test_embeddings is None:
+            raise ValueError(
+                "Test embeddings not available. "
+                "Make sure search_type includes semantic functionality."
+            )
+
+        if self.generator is None:
+            raise ValueError("Embedding generator not available.")
+
         # Generate query embedding
         query_embedding = self.generator.generate_batch([query])
+
+        # Ensure embeddings are numpy arrays with correct shapes
+        if not isinstance(self.test_embeddings, np.ndarray):
+            raise ValueError(
+                f"test_embeddings must be numpy array, got {type(self.test_embeddings)}"
+            )
+
+        if not isinstance(query_embedding, np.ndarray):
+            raise ValueError(
+                f"query_embedding must be numpy array, got {type(query_embedding)}"
+            )
 
         # Calculate cosine similarity
         similarities = cosine_similarity(query_embedding, self.test_embeddings)[0]
@@ -102,9 +177,10 @@ class SearchEvaluator:
         # Format results similar to search_similar_tables
         results = []
         for idx in top_indices:
-            similarity_score = similarities[idx]
-            metadata = self.test_metadata[idx]
-            results.append((float(similarity_score), metadata))
+            if idx < len(self.test_metadata):
+                similarity_score = similarities[idx]
+                metadata = self.test_metadata[idx]
+                results.append((float(similarity_score), metadata))
 
         return results
 
@@ -112,8 +188,8 @@ class SearchEvaluator:
         self, query: str, query_keywords: Set[str], top_k: int = 10
     ) -> Dict:
         """Evaluate a single search query"""
-        # Get search results using test embeddings
-        search_results = self._search_test_embeddings(query, top_k)
+        # Get search results using configured search method
+        search_results = self._search_test_data(query, top_k)
 
         # Get ground truth relevance scores
         ground_truth = self.get_ground_truth_relevance(query_keywords)
@@ -278,9 +354,6 @@ class SearchEvaluator:
 
 
 if __name__ == "__main__":
-    # Initialize evaluator
-    evaluator = SearchEvaluator("data/raw/dataset_example_test.csv")
-
     # Create test queries
     test_queries = [
         {
@@ -306,7 +379,7 @@ if __name__ == "__main__":
             "query": "where can I find employee monitoring data",
             "keywords": {"employee", "monitoring"},
         },
-        {"query": "neywork security", "keywords": {"network", "security"}},
+        {"query": "network security", "keywords": {"network", "security"}},
         {"query": "innovation our company has done", "keywords": {"innovation"}},
         {
             "query": "i want to know about our asset tracking",
@@ -314,14 +387,36 @@ if __name__ == "__main__":
         },
     ]
 
-    # Run evaluation
-    print("Running evaluation...")
-    results = evaluator.run_evaluation(test_queries)
+    # Evaluate all search methods
+    search_methods = ["semantic", "bm25", "hybrid"]
 
-    # Print report
-    evaluator.print_evaluation_report(results)
+    for method in search_methods:
+        print(f"\n{'='*60}")
+        print(f"EVALUATING {method.upper()} SEARCH")
+        print(f"{'='*60}")
 
-    # Save results
-    with open("evals/evaluation_results.json", "w") as f:
-        json.dump(results, f, indent=2)
-    print("\nDetailed results saved to evaluation_results.json")
+        # Initialize evaluator for this search method
+        evaluator = SearchEvaluator(
+            "data/raw/dataset_example_test.csv", search_type=method
+        )
+
+        # Run evaluation
+        print(f"Running {method} evaluation...")
+        results = evaluator.run_evaluation(test_queries)
+
+        # Print report
+        evaluator.print_evaluation_report(results)
+
+        # Save results
+        output_file = f"evals/evaluation_results_{method}.json"
+        with open(output_file, "w") as f:
+            json.dump(results, f, indent=2)
+        print(f"\nDetailed results saved to {output_file}")
+
+    print(f"\n{'='*60}")
+    print("EVALUATION COMPARISON COMPLETE")
+    print(f"{'='*60}")
+    print("Check the evals/ directory for detailed results:")
+    print("- evaluation_results_semantic.json")
+    print("- evaluation_results_bm25.json")
+    print("- evaluation_results_hybrid.json")

@@ -4,9 +4,8 @@ from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 from contextlib import asynccontextmanager
 import uvicorn
-from search import load_search_components, search_similar_tables
+from semantic import semantic_search, EmbeddingGenerator  # noqa: F401
 import pandas as pd
-from components import EmbeddingGenerator  # noqa: F401 - Required for pickle loading
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -34,7 +33,7 @@ async def lifespan(app: FastAPI):
     """Load search components on startup"""
     global embedding_data, generator
     try:
-        embedding_data, generator = load_search_components()
+        embedding_data, generator = semantic_search.load_search_components()
         print("✅ Search components loaded successfully")
         yield
     except Exception as e:
@@ -84,7 +83,7 @@ async def startup_event():
     """Load search components on startup"""
     global embedding_data, generator
     try:
-        embedding_data, generator = load_search_components()
+        embedding_data, generator = semantic_search.load_search_components()
         print("✅ Search components loaded successfully")
     except Exception as e:
         print(f"❌ Failed to load search components: {e}")
@@ -111,7 +110,7 @@ async def search_tables(request: SearchRequest):
 
     try:
         # Perform search
-        results = search_similar_tables(
+        results = semantic_search.search_similar_tables(
             request.query, embedding_data, generator, top_k=request.top_k
         )
 

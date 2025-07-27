@@ -2,7 +2,7 @@ import pickle
 from typing import List, Tuple
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-from components import EmbeddingGenerator
+from . import EmbeddingGenerator
 
 
 def load_embeddings(filepath: str):
@@ -66,8 +66,6 @@ def print_search_results(results: List[Tuple[float, dict]], query: str):
 
 
 def load_search_components(use_embedding=True):
-    from components import EmbeddingGenerator
-
     embedding_data = None
     if use_embedding:
         embedding_data = load_embeddings("data/embedding/miniLM_embedding.pkl")
