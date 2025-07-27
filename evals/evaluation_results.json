@@ -1,0 +1,860 @@
+{
+  "individual_results": [
+    {
+      "query": "Where I can find the daily campaign plan data?",
+      "query_keywords": [
+        "campaign",
+        "plan",
+        "daily"
+      ],
+      "total_results": 10,
+      "relevant_found": 1,
+      "total_relevant_in_dataset": 1,
+      "precision_at_k": 0.1,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "avg_relevance_score": 1.0,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.marketing.campaign_analytics",
+          "similarity": 0.5031563639640808,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.analytics.revenue_forecasting",
+          "similarity": 0.3789621591567993,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.project.resource_allocation",
+          "similarity": 0.3298981785774231,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.finance.budget_planning",
+          "similarity": 0.3263425827026367,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.marketing.customer_segmentation",
+          "similarity": 0.30820220708847046,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.business_intelligence.dashboard_metrics",
+          "similarity": 0.29313430190086365,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.project.task_tracking",
+          "similarity": 0.2918649911880493,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.research.experiment_data",
+          "similarity": 0.2767077088356018,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.analytics.customer_churn",
+          "similarity": 0.2594153881072998,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.network.bandwidth_monitoring",
+          "similarity": 0.2570989429950714,
+          "relevance_score": 0.0
+        }
+      ]
+    },
+    {
+      "query": "detected fraud data",
+      "query_keywords": [
+        "fraud",
+        "detection"
+      ],
+      "total_results": 10,
+      "relevant_found": 1,
+      "total_relevant_in_dataset": 2,
+      "precision_at_k": 0.1,
+      "recall_at_k": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.7039180890341347,
+      "avg_relevance_score": 1.5,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.financial_services.fraud_detection",
+          "similarity": 0.4739779829978943,
+          "relevance_score": 1.5
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.financial_services.anti_money_laundering",
+          "similarity": 0.34290552139282227,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.analytics.customer_churn",
+          "similarity": 0.3253893256187439,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.quality.defect_tracking",
+          "similarity": 0.3189653754234314,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.network.security_incidents",
+          "similarity": 0.2954457402229309,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.compliance.audit_trail",
+          "similarity": 0.2911015748977661,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.data_governance.privacy_compliance",
+          "similarity": 0.2739884555339813,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.training.certification_tracking",
+          "similarity": 0.2603018581867218,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.network.bandwidth_monitoring",
+          "similarity": 0.2519546151161194,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.risk_management.incident_response",
+          "similarity": 0.2514849603176117,
+          "relevance_score": 0.0
+        }
+      ]
+    },
+    {
+      "query": "analytical data of our customer",
+      "query_keywords": [
+        "customer",
+        "analytics"
+      ],
+      "total_results": 10,
+      "relevant_found": 5,
+      "total_relevant_in_dataset": 6,
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.8333333333333334,
+      "mrr": 1.0,
+      "ndcg": 0.872591837732804,
+      "avg_relevance_score": 1.2,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.analytics.customer_churn",
+          "similarity": 0.4872846007347107,
+          "relevance_score": 1.5
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.marketing.customer_segmentation",
+          "similarity": 0.48444899916648865,
+          "relevance_score": 1.5
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.marketing.campaign_analytics",
+          "similarity": 0.4379560351371765,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.customer_service.knowledge_base",
+          "similarity": 0.4128521680831909,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.facilities.energy_consumption",
+          "similarity": 0.40182408690452576,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.asset_management.software_licenses",
+          "similarity": 0.38178151845932007,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.business_intelligence.dashboard_metrics",
+          "similarity": 0.369143009185791,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.analytics.revenue_forecasting",
+          "similarity": 0.3621387779712677,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.financial_services.anti_money_laundering",
+          "similarity": 0.3610400855541229,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.customer_service.ticket_management",
+          "similarity": 0.35959747433662415,
+          "relevance_score": 0.0
+        }
+      ]
+    },
+    {
+      "query": "find security-related data",
+      "query_keywords": [
+        "security"
+      ],
+      "total_results": 10,
+      "relevant_found": 4,
+      "total_relevant_in_dataset": 5,
+      "precision_at_k": 0.4,
+      "recall_at_k": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.8207658584763088,
+      "avg_relevance_score": 1.0,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.security.threat_detection",
+          "similarity": 0.48957204818725586,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.security.access_logs",
+          "similarity": 0.4711570143699646,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.network.security_incidents",
+          "similarity": 0.4507613778114319,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.compliance.audit_trail",
+          "similarity": 0.41288840770721436,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.financial_services.anti_money_laundering",
+          "similarity": 0.3825630247592926,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.data_governance.privacy_compliance",
+          "similarity": 0.3575590252876282,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.network.bandwidth_monitoring",
+          "similarity": 0.3290673494338989,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.data_governance.data_catalog",
+          "similarity": 0.32284992933273315,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.asset_management.software_licenses",
+          "similarity": 0.3107786774635315,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.financial_services.fraud_detection",
+          "similarity": 0.3093588948249817,
+          "relevance_score": 1.0
+        }
+      ]
+    },
+    {
+      "query": "we need all tables about compliance and audit",
+      "query_keywords": [
+        "audit",
+        "compliance"
+      ],
+      "total_results": 10,
+      "relevant_found": 7,
+      "total_relevant_in_dataset": 10,
+      "precision_at_k": 0.7,
+      "recall_at_k": 0.7,
+      "mrr": 1.0,
+      "ndcg": 0.8040772421557817,
+      "avg_relevance_score": 1.1428571428571428,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.compliance.regulatory_reports",
+          "similarity": 0.6391024589538574,
+          "relevance_score": 1.5
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.financial_services.anti_money_laundering",
+          "similarity": 0.6156089305877686,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.data_governance.privacy_compliance",
+          "similarity": 0.61002117395401,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.compliance.audit_trail",
+          "similarity": 0.5739762783050537,
+          "relevance_score": 1.5
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.training.certification_tracking",
+          "similarity": 0.5634922385215759,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.asset_management.software_licenses",
+          "similarity": 0.5491212606430054,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.financial_services.fraud_detection",
+          "similarity": 0.5281563997268677,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.financial_services.credit_scoring",
+          "similarity": 0.5181987285614014,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.network.security_incidents",
+          "similarity": 0.51397705078125,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.security.access_logs",
+          "similarity": 0.5125380158424377,
+          "relevance_score": 1.0
+        }
+      ]
+    },
+    {
+      "query": "table about overall business performance",
+      "query_keywords": [
+        "performance",
+        "business",
+        "report"
+      ],
+      "total_results": 10,
+      "relevant_found": 4,
+      "total_relevant_in_dataset": 5,
+      "precision_at_k": 0.4,
+      "recall_at_k": 0.8,
+      "mrr": 1.0,
+      "ndcg": 0.7238911047912078,
+      "avg_relevance_score": 1.0,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.vendor.performance_evaluation",
+          "similarity": 0.6026844382286072,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.facilities.energy_consumption",
+          "similarity": 0.5599782466888428,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.hr.employee_performance",
+          "similarity": 0.5584899187088013,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.marketing.customer_segmentation",
+          "similarity": 0.5206596851348877,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.analytics.revenue_forecasting",
+          "similarity": 0.5076238512992859,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.logistics.route_optimization",
+          "similarity": 0.4915965497493744,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.network.bandwidth_monitoring",
+          "similarity": 0.49124717712402344,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.inventory.stock_levels",
+          "similarity": 0.4864605665206909,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.business_intelligence.dashboard_metrics",
+          "similarity": 0.4832174777984619,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.sales.opportunity_tracking",
+          "similarity": 0.4814145863056183,
+          "relevance_score": 0.0
+        }
+      ]
+    },
+    {
+      "query": "data governance",
+      "query_keywords": [
+        "data",
+        "governance"
+      ],
+      "total_results": 10,
+      "relevant_found": 1,
+      "total_relevant_in_dataset": 4,
+      "precision_at_k": 0.1,
+      "recall_at_k": 0.25,
+      "mrr": 0.25,
+      "ndcg": 0.16812753627111746,
+      "avg_relevance_score": 1.0,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.data_governance.data_catalog",
+          "similarity": 0.4462434649467468,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.data_governance.privacy_compliance",
+          "similarity": 0.4403136670589447,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.legal.litigation_tracking",
+          "similarity": 0.291505366563797,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.compliance.regulatory_reports",
+          "similarity": 0.2829431891441345,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.security.threat_detection",
+          "similarity": 0.26377376914024353,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.network.security_incidents",
+          "similarity": 0.2483580857515335,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.communications.external_relations",
+          "similarity": 0.24679721891880035,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.quality.defect_tracking",
+          "similarity": 0.24173925817012787,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.customer_service.knowledge_base",
+          "similarity": 0.24158693850040436,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.financial_services.fraud_detection",
+          "similarity": 0.23708230257034302,
+          "relevance_score": 0.0
+        }
+      ]
+    },
+    {
+      "query": "where can I find employee monitoring data",
+      "query_keywords": [
+        "employee",
+        "monitoring"
+      ],
+      "total_results": 10,
+      "relevant_found": 4,
+      "total_relevant_in_dataset": 6,
+      "precision_at_k": 0.4,
+      "recall_at_k": 0.6666666666666666,
+      "mrr": 1.0,
+      "ndcg": 0.735916889650613,
+      "avg_relevance_score": 1.0,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.network.bandwidth_monitoring",
+          "similarity": 0.47484344244003296,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.hr.employee_performance",
+          "similarity": 0.4211740493774414,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.compliance.audit_trail",
+          "similarity": 0.4190739393234253,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.training.certification_tracking",
+          "similarity": 0.4163494408130646,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.hr.payroll_processing",
+          "similarity": 0.4153164327144623,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.finance.expense_tracking",
+          "similarity": 0.3912144899368286,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.business_intelligence.dashboard_metrics",
+          "similarity": 0.3843933045864105,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.business_intelligence.report_automation",
+          "similarity": 0.3825922906398773,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.security.access_logs",
+          "similarity": 0.37728387117385864,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.project.task_tracking",
+          "similarity": 0.3750690221786499,
+          "relevance_score": 0.0
+        }
+      ]
+    },
+    {
+      "query": "neywork security",
+      "query_keywords": [
+        "security",
+        "network"
+      ],
+      "total_results": 10,
+      "relevant_found": 4,
+      "total_relevant_in_dataset": 6,
+      "precision_at_k": 0.4,
+      "recall_at_k": 0.6666666666666666,
+      "mrr": 1.0,
+      "ndcg": 0.7221197353622149,
+      "avg_relevance_score": 1.125,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.security.threat_detection",
+          "similarity": 0.23687446117401123,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.network.security_incidents",
+          "similarity": 0.1914808452129364,
+          "relevance_score": 1.5
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.security.access_logs",
+          "similarity": 0.18991640210151672,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.compliance.audit_trail",
+          "similarity": 0.17215077579021454,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.financial_services.anti_money_laundering",
+          "similarity": 0.14437326788902283,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.hr.payroll_processing",
+          "similarity": 0.13713547587394714,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.training.certification_tracking",
+          "similarity": 0.11424094438552856,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.data_governance.privacy_compliance",
+          "similarity": 0.11180572211742401,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.financial_services.fraud_detection",
+          "similarity": 0.09916239976882935,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.compliance.regulatory_reports",
+          "similarity": 0.09193351119756699,
+          "relevance_score": 0.0
+        }
+      ]
+    },
+    {
+      "query": "innovation our company has done",
+      "query_keywords": [
+        "innovation"
+      ],
+      "total_results": 10,
+      "relevant_found": 3,
+      "total_relevant_in_dataset": 3,
+      "precision_at_k": 0.3,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "avg_relevance_score": 1.0,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.innovation.prototype_testing",
+          "similarity": 0.34302812814712524,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.innovation.idea_management",
+          "similarity": 0.3078228831291199,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.research.patent_portfolio",
+          "similarity": 0.2547582983970642,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.quality.defect_tracking",
+          "similarity": 0.20589543879032135,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.business_intelligence.dashboard_metrics",
+          "similarity": 0.1966135948896408,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.inventory.stock_levels",
+          "similarity": 0.19466786086559296,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.research.experiment_data",
+          "similarity": 0.17961977422237396,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.quality.inspection_results",
+          "similarity": 0.17354923486709595,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.marketing.campaign_analytics",
+          "similarity": 0.16722863912582397,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.finance.budget_planning",
+          "similarity": 0.15431736409664154,
+          "relevance_score": 0.0
+        }
+      ]
+    },
+    {
+      "query": "i want to know about our asset tracking",
+      "query_keywords": [
+        "asset",
+        "tracking"
+      ],
+      "total_results": 10,
+      "relevant_found": 5,
+      "total_relevant_in_dataset": 6,
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.8333333333333334,
+      "mrr": 1.0,
+      "ndcg": 0.7034646249939236,
+      "avg_relevance_score": 1.0,
+      "search_results": [
+        {
+          "rank": 1,
+          "table_id": "enterprise.asset_management.fixed_assets",
+          "similarity": 0.4125170111656189,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 2,
+          "table_id": "enterprise.sales.opportunity_tracking",
+          "similarity": 0.3852763772010803,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 3,
+          "table_id": "enterprise.network.bandwidth_monitoring",
+          "similarity": 0.3693503737449646,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 4,
+          "table_id": "enterprise.business_intelligence.dashboard_metrics",
+          "similarity": 0.3652992844581604,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 5,
+          "table_id": "enterprise.finance.expense_tracking",
+          "similarity": 0.36388343572616577,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 6,
+          "table_id": "enterprise.marketing.campaign_analytics",
+          "similarity": 0.35690149664878845,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 7,
+          "table_id": "enterprise.project.task_tracking",
+          "similarity": 0.3495500087738037,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 8,
+          "table_id": "enterprise.asset_management.software_licenses",
+          "similarity": 0.3488540053367615,
+          "relevance_score": 1.0
+        },
+        {
+          "rank": 9,
+          "table_id": "enterprise.legal.litigation_tracking",
+          "similarity": 0.3316113352775574,
+          "relevance_score": 0.0
+        },
+        {
+          "rank": 10,
+          "table_id": "enterprise.logistics.shipment_tracking",
+          "similarity": 0.3248279094696045,
+          "relevance_score": 1.0
+        }
+      ]
+    }
+  ],
+  "aggregate_metrics": {
+    "average_precision_at_10": 0.35454545454545455,
+    "average_recall_at_10": 0.7318181818181819,
+    "average_mrr": 0.9318181818181818,
+    "average_ndcg": 0.7504429925880096,
+    "average_relevance_score": 1.0879870129870128,
+    "f1_score": 0.4776721186763029,
+    "total_queries": 11
+  }
+}
