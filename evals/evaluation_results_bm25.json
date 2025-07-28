@@ -3,8 +3,8 @@
     {
       "query": "Where I can find the daily campaign plan data?",
       "query_keywords": [
-        "campaign",
         "daily",
+        "campaign",
         "plan"
       ],
       "total_results": 2,
@@ -197,8 +197,8 @@
     {
       "query": "we need all tables about compliance and audit",
       "query_keywords": [
-        "audit",
-        "compliance"
+        "compliance",
+        "audit"
       ],
       "total_results": 7,
       "relevant_found": 7,
@@ -363,8 +363,8 @@
     {
       "query": "where can I find employee monitoring data",
       "query_keywords": [
-        "monitoring",
-        "employee"
+        "employee",
+        "monitoring"
       ],
       "total_results": 9,
       "relevant_found": 2,
@@ -432,40 +432,34 @@
       ]
     },
     {
-      "query": "network security",
+      "query": "neywork security",
       "query_keywords": [
         "security",
         "network"
       ],
-      "total_results": 4,
-      "relevant_found": 4,
+      "total_results": 3,
+      "relevant_found": 3,
       "total_relevant_in_dataset": 6,
-      "precision_at_k": 0.4,
-      "recall_at_k": 0.6666666666666666,
+      "precision_at_k": 0.3,
+      "recall_at_k": 0.5,
       "mrr": 1.0,
-      "ndcg": 0.8046977225904915,
-      "avg_relevance_score": 1.125,
+      "ndcg": 0.6915007892889729,
+      "avg_relevance_score": 1.1666666666666667,
       "search_results": [
         {
           "rank": 1,
           "table_id": "enterprise.network.security_incidents",
-          "similarity": 8.774813574148862,
+          "similarity": 4.45058916427407,
           "relevance_score": 1.5
         },
         {
           "rank": 2,
-          "table_id": "enterprise.network.bandwidth_monitoring",
-          "similarity": 5.102216412575533,
-          "relevance_score": 1.0
-        },
-        {
-          "rank": 3,
           "table_id": "enterprise.security.threat_detection",
           "similarity": 3.8152575531713704,
           "relevance_score": 1.0
         },
         {
-          "rank": 4,
+          "rank": 3,
           "table_id": "enterprise.security.access_logs",
           "similarity": 3.707060296758603,
           "relevance_score": 1.0
@@ -503,8 +497,8 @@
     {
       "query": "i want to know about our asset tracking",
       "query_keywords": [
-        "asset",
-        "tracking"
+        "tracking",
+        "asset"
       ],
       "total_results": 9,
       "relevant_found": 5,
@@ -573,12 +567,12 @@
     }
   ],
   "aggregate_metrics": {
-    "average_precision_at_10": 0.27272727272727276,
-    "average_recall_at_10": 0.5681818181818182,
+    "average_precision_at_10": 0.26363636363636367,
+    "average_recall_at_10": 0.553030303030303,
     "average_mrr": 0.7803030303030302,
-    "average_ndcg": 0.619276143926882,
-    "average_relevance_score": 1.1101190476190477,
-    "f1_score": 0.3685503685503686,
+    "average_ndcg": 0.608985513626744,
+    "average_relevance_score": 1.1142857142857143,
+    "f1_score": 0.3570585258896948,
     "total_queries": 11
   }
 }

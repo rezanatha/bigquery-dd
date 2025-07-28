@@ -3,8 +3,8 @@
     {
       "query": "Where I can find the daily campaign plan data?",
       "query_keywords": [
-        "campaign",
         "daily",
+        "campaign",
         "plan"
       ],
       "total_results": 10,
@@ -311,8 +311,8 @@
     {
       "query": "we need all tables about compliance and audit",
       "query_keywords": [
-        "audit",
-        "compliance"
+        "compliance",
+        "audit"
       ],
       "total_results": 10,
       "relevant_found": 7,
@@ -543,8 +543,8 @@
     {
       "query": "where can I find employee monitoring data",
       "query_keywords": [
-        "monitoring",
-        "employee"
+        "employee",
+        "monitoring"
       ],
       "total_results": 10,
       "relevant_found": 3,
@@ -618,78 +618,78 @@
       ]
     },
     {
-      "query": "network security",
+      "query": "neywork security",
       "query_keywords": [
         "security",
         "network"
       ],
       "total_results": 10,
-      "relevant_found": 5,
+      "relevant_found": 4,
       "total_relevant_in_dataset": 6,
-      "precision_at_k": 0.5,
-      "recall_at_k": 0.8333333333333334,
+      "precision_at_k": 0.4,
+      "recall_at_k": 0.6666666666666666,
       "mrr": 1.0,
-      "ndcg": 0.8876129775470907,
-      "avg_relevance_score": 1.1,
+      "ndcg": 0.7706220502495594,
+      "avg_relevance_score": 1.125,
       "search_results": [
         {
           "rank": 1,
           "table_id": "enterprise.network.security_incidents",
-          "similarity": 0.30090588331222534,
+          "similarity": 0.2947140038013458,
           "relevance_score": 1.5
         },
         {
           "rank": 2,
           "table_id": "enterprise.security.threat_detection",
-          "similarity": 0.20514854788780212,
+          "similarity": 0.22022798657417297,
           "relevance_score": 1.0
         },
         {
           "rank": 3,
           "table_id": "enterprise.security.access_logs",
-          "similarity": 0.16495655477046967,
+          "similarity": 0.1732037514448166,
           "relevance_score": 1.0
         },
         {
           "rank": 4,
-          "table_id": "enterprise.network.bandwidth_monitoring",
-          "similarity": 0.15717127919197083,
-          "relevance_score": 1.0
+          "table_id": "enterprise.compliance.audit_trail",
+          "similarity": 0.15094046294689178,
+          "relevance_score": 0.0
         },
         {
           "rank": 5,
-          "table_id": "enterprise.compliance.audit_trail",
-          "similarity": 0.12695786356925964,
+          "table_id": "enterprise.financial_services.anti_money_laundering",
+          "similarity": 0.13360664248466492,
           "relevance_score": 0.0
         },
         {
           "rank": 6,
-          "table_id": "enterprise.financial_services.anti_money_laundering",
-          "similarity": 0.08085660636425018,
+          "table_id": "enterprise.hr.payroll_processing",
+          "similarity": 0.12897075712680817,
           "relevance_score": 0.0
         },
         {
           "rank": 7,
           "table_id": "enterprise.training.certification_tracking",
-          "similarity": 0.07802102714776993,
+          "similarity": 0.11466442793607712,
           "relevance_score": 0.0
         },
         {
           "rank": 8,
-          "table_id": "enterprise.risk_management.incident_response",
-          "similarity": 0.07573355734348297,
-          "relevance_score": 1.0
-        },
-        {
-          "rank": 9,
-          "table_id": "enterprise.risk_management.risk_register",
-          "similarity": 0.07470998913049698,
+          "table_id": "enterprise.data_governance.privacy_compliance",
+          "similarity": 0.11300589889287949,
           "relevance_score": 0.0
         },
         {
+          "rank": 9,
+          "table_id": "enterprise.financial_services.fraud_detection",
+          "similarity": 0.10504356026649475,
+          "relevance_score": 1.0
+        },
+        {
           "rank": 10,
-          "table_id": "enterprise.communications.internal_messaging",
-          "similarity": 0.06905795633792877,
+          "table_id": "enterprise.compliance.regulatory_reports",
+          "similarity": 0.100431427359581,
           "relevance_score": 0.0
         }
       ]
@@ -773,8 +773,8 @@
     {
       "query": "i want to know about our asset tracking",
       "query_keywords": [
-        "asset",
-        "tracking"
+        "tracking",
+        "asset"
       ],
       "total_results": 10,
       "relevant_found": 5,
@@ -849,12 +849,12 @@
     }
   ],
   "aggregate_metrics": {
-    "average_precision_at_10": 0.33636363636363636,
-    "average_recall_at_10": 0.7060606060606059,
+    "average_precision_at_10": 0.32727272727272727,
+    "average_recall_at_10": 0.6909090909090909,
     "average_mrr": 0.8787878787878788,
-    "average_ndcg": 0.7387488849200703,
-    "average_relevance_score": 1.0978354978354976,
-    "f1_score": 0.4556553911205074,
+    "average_ndcg": 0.72811334607484,
+    "average_relevance_score": 1.100108225108225,
+    "f1_score": 0.4441558441558442,
     "total_queries": 11
   }
 }

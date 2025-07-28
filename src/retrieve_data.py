@@ -45,7 +45,11 @@ def get_table_metadata(client, project_id, dataset_id=None, target_project=None)
                     t.table_catalog,
                     t.table_schema,
                     t.table_name,
-                    STRING_AGG(c.column_name, ', ' ORDER BY c.ordinal_position) as all_columns
+                    STRING_AGG(
+                    c.column_name,
+                    ', '
+                    ORDER BY c.ordinal_position
+                    ) as all_columns
                 FROM `{data_project}.{dataset}.INFORMATION_SCHEMA.TABLES` t
                 LEFT JOIN `{data_project}.{dataset}.INFORMATION_SCHEMA.COLUMNS` c
                 USING(table_catalog, table_schema, table_name)
@@ -54,9 +58,18 @@ def get_table_metadata(client, project_id, dataset_id=None, target_project=None)
                 """
                 result = client.query(dataset_query)
                 for row in result:
-                    all_tables.append((row.table_catalog, row.table_schema, row.table_name, row.all_columns))
+                    all_tables.append(
+                        (
+                            row.table_catalog,
+                            row.table_schema,
+                            row.table_name,
+                            row.all_columns,
+                        )
+                    )
             except Exception as e:
-                print(f"Warning: Could not query dataset {dataset}: {e}", file=sys.stderr)
+                print(
+                    f"Warning: Could not query dataset {dataset}: {e}", file=sys.stderr
+                )
                 continue
 
         return all_tables
@@ -65,7 +78,9 @@ def get_table_metadata(client, project_id, dataset_id=None, target_project=None)
         result = client.query(query)
         tables = []
         for row in result:
-            tables.append((row.table_catalog, row.table_schema, row.table_name, row.all_columns))
+            tables.append(
+                (row.table_catalog, row.table_schema, row.table_name, row.all_columns)
+            )
         return tables
     except Exception as e:
         print(f"Error executing query: {e}", file=sys.stderr)
@@ -74,8 +89,9 @@ def get_table_metadata(client, project_id, dataset_id=None, target_project=None)
 
 def main():
     parser = argparse.ArgumentParser(
-        description='''
-Retrieve BigQuery table metadata using INFORMATION_SCHEMA and export it into pipe-separated file named output.csv
+        description="""
+Retrieve BigQuery table metadata using INFORMATION_SCHEMA
+and export it into pipe-separated file named output.csv
 
 The script assumes users have:
   - GCP CLI installed and authenticated
@@ -84,35 +100,47 @@ The script assumes users have:
 
 The current script will work with these prerequisites using the default credentials
 from gcloud auth application-default login.
-''',
-        formatter_class=argparse.RawDescriptionHelpFormatter
+""",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    parser.add_argument('project_id', help='Google Cloud Project ID (your project for running jobs)')
-    parser.add_argument('--dataset', help='Specific dataset ID (optional)')
-    parser.add_argument('--target-project', help='Target project containing the dataset (default: same as project_id)')
-    parser.add_argument('--output', '-o', help='Output file (CSV format)')
-    parser.add_argument('--limit', type=int, help='Limit number of results')
+    parser.add_argument(
+        "project_id", help="Google Cloud Project ID (your project for running jobs)"
+    )
+    parser.add_argument("--dataset", help="Specific dataset ID (optional)")
+    parser.add_argument(
+        "--target-project",
+        help="Target project containing the dataset (default: same as project_id)",
+    )
+    parser.add_argument("--output", "-o", help="Output file (CSV format)")
+    parser.add_argument("--limit", type=int, help="Limit number of results")
 
     args = parser.parse_args()
 
     try:
         client = bigquery.Client(project=args.project_id)
 
-        target_project = args.target_project if hasattr(args, 'target_project') else None
-        tables = get_table_metadata(client, args.project_id, args.dataset, target_project)
+        target_project = (
+            args.target_project if hasattr(args, "target_project") else None
+        )
+        tables = get_table_metadata(
+            client, args.project_id, args.dataset, target_project
+        )
 
         if args.limit:
-            tables = tables[:args.limit]
+            tables = tables[: args.limit]
 
         # Output pipe-separated CSV header
         header = "table_catalog|table_schema|table_name|all_columns"
 
         output_file = args.output if args.output else "output.csv"
 
-        with open(output_file, 'w') as f:
+        with open(output_file, "w") as f:
             f.write(header + "\n")
             for table in tables:
-                f.write("|".join(str(field) if field is not None else "" for field in table) + "\n")
+                line = "|".join(
+                    str(field) if field is not None else "" for field in table
+                )
+                f.write(line + "\n")
         print(f"Metadata for {len(tables)} tables saved to {output_file}")
 
     except Exception as e:
@@ -120,5 +148,5 @@ from gcloud auth application-default login.
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

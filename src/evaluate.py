@@ -379,7 +379,7 @@ if __name__ == "__main__":
             "query": "where can I find employee monitoring data",
             "keywords": {"employee", "monitoring"},
         },
-        {"query": "network security", "keywords": {"network", "security"}},
+        {"query": "neywork security", "keywords": {"network", "security"}},
         {"query": "innovation our company has done", "keywords": {"innovation"}},
         {
             "query": "i want to know about our asset tracking",
