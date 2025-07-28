@@ -354,6 +354,19 @@ class SearchEvaluator:
 
 
 if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Evaluate search models")
+    parser.add_argument(
+        "--test-dataset",
+        default="data/raw/dataset_example_test.csv",
+        help="""
+        Path to test dataset CSV file (default: data/raw/dataset_example_test.csv)
+        """,
+    )
+
+    args = parser.parse_args()
+
     # Create test queries
     test_queries = [
         {
@@ -396,9 +409,7 @@ if __name__ == "__main__":
         print(f"{'='*60}")
 
         # Initialize evaluator for this search method
-        evaluator = SearchEvaluator(
-            "data/raw/dataset_example_test.csv", search_type=method
-        )
+        evaluator = SearchEvaluator(args.test_dataset, search_type=method)
 
         # Run evaluation
         print(f"Running {method} evaluation...")

@@ -4,8 +4,8 @@
       "query": "Where I can find the daily campaign plan data?",
       "query_keywords": [
         "daily",
-        "campaign",
-        "plan"
+        "plan",
+        "campaign"
       ],
       "total_results": 10,
       "relevant_found": 1,
@@ -81,8 +81,8 @@
     {
       "query": "detected fraud data",
       "query_keywords": [
-        "detection",
-        "fraud"
+        "fraud",
+        "detection"
       ],
       "total_results": 10,
       "relevant_found": 1,
@@ -311,8 +311,8 @@
     {
       "query": "we need all tables about compliance and audit",
       "query_keywords": [
-        "compliance",
-        "audit"
+        "audit",
+        "compliance"
       ],
       "total_results": 10,
       "relevant_found": 7,
@@ -388,8 +388,8 @@
     {
       "query": "table about overall business performance",
       "query_keywords": [
-        "report",
         "performance",
+        "report",
         "business"
       ],
       "total_results": 10,
@@ -466,8 +466,8 @@
     {
       "query": "data governance",
       "query_keywords": [
-        "data",
-        "governance"
+        "governance",
+        "data"
       ],
       "total_results": 10,
       "relevant_found": 2,
@@ -620,8 +620,8 @@
     {
       "query": "neywork security",
       "query_keywords": [
-        "security",
-        "network"
+        "network",
+        "security"
       ],
       "total_results": 10,
       "relevant_found": 4,
@@ -773,8 +773,8 @@
     {
       "query": "i want to know about our asset tracking",
       "query_keywords": [
-        "tracking",
-        "asset"
+        "asset",
+        "tracking"
       ],
       "total_results": 10,
       "relevant_found": 5,

@@ -6,7 +6,6 @@ from google.cloud import bigquery
 
 
 def get_table_metadata(client, project_id, dataset_id=None, target_project=None):
-    # Use target_project if specified, otherwise use project_id
     data_project = target_project if target_project else project_id
 
     if dataset_id:
@@ -132,7 +131,7 @@ from gcloud auth application-default login.
         # Output pipe-separated CSV header
         header = "table_catalog|table_schema|table_name|all_columns"
 
-        output_file = args.output if args.output else "output.csv"
+        output_file = args.output if args.output else "data/raw/retrieved_output.csv"
 
         with open(output_file, "w") as f:
             f.write(header + "\n")

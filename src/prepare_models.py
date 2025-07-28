@@ -32,6 +32,18 @@ def train_bm25(dataset_path: str):
 
 
 if __name__ == "__main__":
-    dataset_path = "data/raw/dataset_example.csv"
-    create_embedding(dataset_path)
-    train_bm25(dataset_path)
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Prepare semantic embedding and BM25 models"
+    )
+    parser.add_argument(
+        "--dataset",
+        default="data/raw/dataset_example.csv",
+        help="Path to dataset CSV file (default: data/raw/dataset_example.csv)",
+    )
+
+    args = parser.parse_args()
+
+    create_embedding(args.dataset)
+    train_bm25(args.dataset)
