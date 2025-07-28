@@ -35,9 +35,8 @@ The system consists of several key components:
 
 ### Setup
 
-1. Clone the repository:
+1. Go to the repository:
 ```bash
-git clone <repository-url>
 cd bigquery-data-dictionary
 ```
 
@@ -128,18 +127,63 @@ enterprise|telecom_core|customer_accounts|customer_id, account_number, first_nam
 
 ## Evaluation
 
-The system includes comprehensive evaluation capabilities:
+The system includes comprehensive evaluation capabilities with a custom relevance scoring system:
 
 ```bash
 uv run src/evaluate.py --test-dataset path/to/test/dataset.csv
 ```
 
-Evaluation metrics include:
-- **Precision@K**: Fraction of relevant results in top K
-- **Recall@K**: Fraction of relevant results retrieved
-- **Mean Reciprocal Rank (MRR)**: Average reciprocal rank of first relevant result
-- **NDCG**: Normalized Discounted Cumulative Gain
-- **F1 Score**: Harmonic mean of precision and recall
+### Custom Relevance Scoring
+
+The evaluation uses a keyword-based relevance scoring system that rewards tables with more matching keywords:
+
+- **0 points**: No keyword matches between query and table
+- **1.0 points**: Base score for any keyword match
+- **+0.5 points**: For each additional matching keyword
+
+**Example:**
+- Query: `["fraud", "detection", "security"]`
+- Table keywords: `["fraud", "detection", "risk", "investigation"]`
+- Matching keywords: `["fraud", "detection"]` (2 matches)
+- **Relevance Score**: 1.0 + (2-1) × 0.5 = **1.5**
+
+This scoring approach ensures that tables with more comprehensive keyword coverage receive higher relevance scores, providing more nuanced evaluation than binary relevant/non-relevant judgments.
+
+### Test Dataset Format
+
+The test dataset includes a `relevant_keywords` column for ground truth:
+
+```
+table_catalog|table_schema|table_name|all_columns|relevant_keywords
+enterprise|financial_services|fraud_detection|fraud_id, customer_id...|fraud, detection, security, risk
+```
+
+### Evaluation Metrics
+
+The custom relevance scores integrate with standard information retrieval metrics:
+
+#### Binary-Based Metrics
+- **Precision@K**: Counts tables with relevance > 0 as relevant (1.0, 1.5, 2.0 all count as "relevant")
+- **Recall@K**: Same binary treatment - any positive relevance score counts
+- **Mean Reciprocal Rank (MRR)**: Position of first table with relevance > 0
+
+#### Graded Relevance Metrics
+- **Normalized Discounted Cumulative Gain (NDCG)**: Fully utilizes the graded scores! Higher relevance scores (2.0 vs 1.0) contribute more to DCG
+  - DCG formula: `relevance_score / log2(rank + 1)`
+  - A table with score 2.0 at rank 1 contributes 2.0/log2(2) = 2.0
+  - A table with score 1.0 at rank 1 contributes 1.0/log2(2) = 1.0
+- **Average Relevance**: Mean of actual relevance scores for retrieved relevant tables
+
+#### Example Impact
+For query results: `[Table A (score=2.0), Table B (score=1.5), Table C (score=0)]`
+
+- **Precision@10**: 2/3 = 0.67 (binary: A and B both count as relevant)
+- **NDCG**: Accounts for graded relevance - Table A contributes more than Table B
+- **Average Relevance**: (2.0 + 1.5) / 2 = 1.75
+
+This approach rewards search systems that not only find relevant tables but rank the most comprehensive matches (higher keyword overlap) at the top.
+
+The system evaluates all three search methods (semantic, BM25, hybrid) and saves detailed results to the `evals/` directory for comparison.
 
 ## Project Structure
 
@@ -168,7 +212,7 @@ Evaluation metrics include:
 
 - **Semantic Model**: Uses `all-MiniLM-L6-v2` sentence transformer by default
 - **BM25 Parameters**: Standard BM25 with k1=1.2, b=0.75
-- **Hybrid Fusion**: Reciprocal Rank Fusion with equal weighting
+- **Hybrid Fusion**: [Reciprocal Rank Fusion](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion) with equal weighting
 
 ## Troubleshooting
 
