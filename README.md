@@ -1,6 +1,6 @@
 # BigQuery Data Dictionary Search
 
-A comprehensive search system for BigQuery table metadata that combines semantic similarity search with keyword-based retrieval to help users discover relevant tables in large datasets.
+A comprehensive search system for BigQuery table metadata that combines semantic similarity search with keyword-based retrieval to help users discover relevant tables in BigQuery.
 
 ## Features
 
@@ -169,9 +169,11 @@ The custom relevance scores integrate with standard information retrieval metric
 
 #### Graded Relevance Metrics
 - **Normalized Discounted Cumulative Gain (NDCG)**: Fully utilizes the graded scores! Higher relevance scores (2.0 vs 1.0) contribute more to DCG
-  - DCG formula: `relevance_score / log2(rank + 1)`
-  - A table with score 2.0 at rank 1 contributes 2.0/log2(2) = 2.0
-  - A table with score 1.0 at rank 1 contributes 1.0/log2(2) = 1.0
+  - **DCG formula**: `Σ(relevance_score / log2(rank + 1))` for all retrieved results
+  - **IDCG formula**: `Σ(relevance_score / log2(rank + 1))` for perfect ranking (highest scores first)
+  - **NDCG = DCG / IDCG** (normalized to 0-1 scale)
+  - Example: Table with score 2.0 at rank 1 contributes 2.0/log2(2) = 2.0 to DCG
+  - NDCG accounts for the ideal ranking to provide comparable scores across different queries
 - **Average Relevance**: Mean of actual relevance scores for retrieved relevant tables
 
 #### Example Impact
@@ -214,6 +216,73 @@ The system evaluates all three search methods (semantic, BM25, hybrid) and saves
 - **BM25 Parameters**: Standard BM25 with k1=1.2, b=0.75
 - **Hybrid Fusion**: [Reciprocal Rank Fusion](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion) with equal weighting
 
+## Testing
+
+### Running Tests
+
+The project includes comprehensive unit tests for all major components:
+
+```bash
+# Run all tests
+uv run pytest tests/ -v
+
+# Run with coverage report
+uv run pytest tests/ --cov=src --cov-report=html
+
+# Run specific test files
+uv run pytest tests/test_embedding.py -v
+uv run pytest tests/test_search.py -v
+```
+
+### Test Coverage
+
+- **test_embedding.py**: Tests embedding generation, text processing, and model serialization
+- **test_search.py**: Tests semantic search, BM25 search, and hybrid fusion algorithms
+- **Integration tests**: End-to-end pipeline testing with real data structures
+
+### Code Quality
+
+The project uses pre-commit hooks for code quality:
+
+```bash
+# Install pre-commit hooks
+uv run pre-commit install
+
+# Run all hooks manually
+uv run pre-commit run --all-files
+```
+
+**Quality tools**:
+- **black**: Code formatting
+- **flake8**: Linting and style checking
+- **autoflake**: Remove unused imports
+- **trailing-whitespace**: File cleanup
+
+## Continuous Integration
+
+### GitHub Actions
+
+The project uses GitHub Actions for automated testing:
+
+- **Triggers**: Runs on every push/PR to `main` and `develop` branches
+- **Python Version**: Tests against Python 3.11
+- **Quality Gates**: All PRs must pass linting and tests before merging
+- **Coverage Reporting**: Automatic upload to Codecov
+
+### CI Pipeline Steps
+
+1. **Setup**: Install Python 3.11 and uv package manager
+2. **Dependencies**: Install project dependencies with `uv sync`
+3. **Code Quality**: Run pre-commit hooks (linting, formatting)
+4. **Testing**: Execute full test suite with coverage reporting
+5. **Integration**: Test the setup script with example data
+
+### Branch Protection
+
+- **main branch**: Protected, requires PR reviews and passing CI
+- **develop branch**: Integration branch for feature development
+- **Feature branches**: Use `feature/description` naming convention
+
 ## Troubleshooting
 
 ### Common Issues
@@ -221,9 +290,12 @@ The system evaluates all three search methods (semantic, BM25, hybrid) and saves
 1. **Authentication Error**: Ensure Google Cloud credentials are properly configured
 2. **Model Loading Error**: Check that models have been trained using `setup.sh`
 3. **Memory Issues**: For large datasets, consider increasing system memory or reducing batch sizes
+4. **Test Failures**: Run `uv run pytest tests/ -v` to see detailed test output
+5. **CI Failures**: Check GitHub Actions logs for specific error messages
 
 ### Getting Help
 
 - Check the evaluation results in the `evals/` directory for performance insights
 - Review the example queries in the Streamlit interface
 - Examine the test dataset format in `data/raw/dataset_example_test.csv`
+- View test coverage reports in `htmlcov/index.html` after running tests with coverage
