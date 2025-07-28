@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 ## install uv packages (uv sync)
 echo "Step 1: UV sync"

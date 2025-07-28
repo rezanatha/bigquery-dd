@@ -114,58 +114,16 @@ def main():
                                 st.write(columns)
 
                         with col3:
-                            # Score with color coding (adjusted for hybrid scores)
+                            # Show raw score without arbitrary categorization
                             score_label = (
                                 "Similarity"
                                 if search_method == "Semantic Only"
                                 else "Score"
                             )
                             if search_method == "Semantic Only":
-                                # Use semantic score thresholds
-                                if score >= 0.6:
-                                    st.metric(
-                                        score_label,
-                                        f"{score:.3f}",
-                                        delta="High",
-                                        delta_color="normal",
-                                    )
-                                elif score >= 0.4:
-                                    st.metric(
-                                        score_label,
-                                        f"{score:.3f}",
-                                        delta="Medium",
-                                        delta_color="off",
-                                    )
-                                else:
-                                    st.metric(
-                                        score_label,
-                                        f"{score:.3f}",
-                                        delta="Low",
-                                        delta_color="inverse",
-                                    )
+                                st.metric(score_label, f"{score:.3f}")
                             else:
-                                # Use different thresholds for hybrid/BM25 scores
-                                if score >= 0.02:
-                                    st.metric(
-                                        score_label,
-                                        f"{score:.4f}",
-                                        delta="High",
-                                        delta_color="normal",
-                                    )
-                                elif score >= 0.01:
-                                    st.metric(
-                                        score_label,
-                                        f"{score:.4f}",
-                                        delta="Medium",
-                                        delta_color="off",
-                                    )
-                                else:
-                                    st.metric(
-                                        score_label,
-                                        f"{score:.4f}",
-                                        delta="Low",
-                                        delta_color="inverse",
-                                    )
+                                st.metric(score_label, f"{score:.4f}")
 
                         st.divider()
 
@@ -188,30 +146,6 @@ def main():
                     st.subheader("Schemas Found")
                     for schema, count in schema_counts.items():
                         st.write(f"• {schema}: {count}")
-
-                    # Quality distribution (adjusted for different search methods)
-                    if search_method == "Semantic Only":
-                        high_quality = sum(1 for score, _ in results if score >= 0.6)
-                        medium_quality = sum(
-                            1 for score, _ in results if 0.4 <= score < 0.6
-                        )
-                        low_quality = sum(1 for score, _ in results if score < 0.4)
-
-                        st.subheader("Quality Distribution")
-                        st.write(f"🟢 High (≥0.6): {high_quality}")
-                        st.write(f"🟡 Medium (0.4-0.6): {medium_quality}")
-                        st.write(f"🔴 Low (<0.4): {low_quality}")
-                    else:
-                        high_quality = sum(1 for score, _ in results if score >= 0.02)
-                        medium_quality = sum(
-                            1 for score, _ in results if 0.01 <= score < 0.02
-                        )
-                        low_quality = sum(1 for score, _ in results if score < 0.01)
-
-                        st.subheader("Quality Distribution")
-                        st.write(f"🟢 High (≥0.02): {high_quality}")
-                        st.write(f"🟡 Medium (0.01-0.02): {medium_quality}")
-                        st.write(f"🔴 Low (<0.01): {low_quality}")
 
             else:
                 st.warning("No results found. Try different keywords.")
