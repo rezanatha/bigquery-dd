@@ -18,7 +18,6 @@ class SearchEvaluator:
         self.test_data = pd.read_csv(test_file_path, sep="|")
         self.search_type = search_type
 
-        # Initialize components based on search type
         if search_type in ["semantic", "hybrid"]:
             _, self.generator = semantic_search.load_search_components(
                 use_embedding=False
@@ -31,7 +30,6 @@ class SearchEvaluator:
                 ["table_catalog", "table_schema", "table_name", "all_columns"]
             ].to_dict("records")
 
-        # Initialize BM25 for BM25 and hybrid search
         if search_type in ["bm25", "hybrid"]:
             self.bm25_searcher = BM25TableSearch()
             self.bm25_searcher.fit(self.test_data)
@@ -101,7 +99,6 @@ class SearchEvaluator:
         if not table_keywords or not query_keywords:
             return 0.0
 
-        # Find intersection (case-insensitive)
         table_keywords_lower = {kw.strip().lower() for kw in table_keywords}
         query_keywords_lower = {kw.strip().lower() for kw in query_keywords}
         matches = table_keywords_lower.intersection(query_keywords_lower)
@@ -367,7 +364,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # Create test queries
+    # create test queries
     test_queries = [
         {
             "query": "Where I can find the daily campaign plan data?",
@@ -400,7 +397,7 @@ if __name__ == "__main__":
         },
     ]
 
-    # Evaluate all search methods
+    # evaluate all search methods
     search_methods = ["semantic", "bm25", "hybrid"]
 
     for method in search_methods:
@@ -408,17 +405,15 @@ if __name__ == "__main__":
         print(f"EVALUATING {method.upper()} SEARCH")
         print(f"{'='*60}")
 
-        # Initialize evaluator for this search method
         evaluator = SearchEvaluator(args.test_dataset, search_type=method)
 
-        # Run evaluation
         print(f"Running {method} evaluation...")
         results = evaluator.run_evaluation(test_queries)
 
-        # Print report
+        # print report
         evaluator.print_evaluation_report(results)
 
-        # Save results
+        # save results
         output_file = f"evals/evaluation_results_{method}.json"
         with open(output_file, "w") as f:
             json.dump(results, f, indent=2)

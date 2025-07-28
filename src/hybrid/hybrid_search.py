@@ -1,8 +1,5 @@
 from typing import List, Dict, Tuple
-import pandas as pd
-from semantic import semantic_search
-from semantic import EmbeddingGenerator  # noqa: F401 - Required for pickle loading
-from bm25 import bm25_search
+from semantic import EmbeddingGenerator  # noqa: F401
 from . import HybridTableSearch
 
 
@@ -37,7 +34,7 @@ def compare_search_methods(
     print(f"\n🔍 COMPARISON FOR QUERY: '{query}'")
     print("=" * 80)
 
-    # Get results from each method
+    # get results from each method
     semantic_results = hybrid_searcher.search_semantic(query, top_k)
     bm25_results = hybrid_searcher.search_bm25(query, top_k)
     hybrid_results = hybrid_searcher.search_hybrid(query, top_k)
@@ -64,24 +61,23 @@ def compare_search_methods(
         print(f"  {i}. {table_name} (score: {score:.3f})")
 
 
-# Example usage
-if __name__ == "__main__":
-    # Load test data
-    data = pd.read_csv("data/raw/dataset_example.csv", sep="|")
+# if __name__ == "__main__":
+#     # Load test data
+#     data = pd.read_csv("data/raw/dataset_example.csv", sep="|")
 
-    # Initialize hybrid search
-    semantic_search = semantic_search.load_search_components()
-    bm25_search = bm25_search.load_search_components()
-    hybrid_searcher = HybridTableSearch(semantic_search, bm25_search)
+#     # Initialize hybrid search
+#     semantic_search = semantic_search.load_search_components()
+#     bm25_search = bm25_search.load_search_components()
+#     hybrid_searcher = HybridTableSearch(semantic_search, bm25_search)
 
-    # Test queries
-    test_queries = ["fraud detection", "customer analytics", "security incidents"]
+#     # Test queries
+#     test_queries = ["fraud detection", "customer analytics", "security incidents"]
 
-    for query in test_queries:
-        # Show comparison
-        compare_search_methods(query, hybrid_searcher, top_k=5)
+#     for query in test_queries:
+#         # Show comparison
+#         compare_search_methods(query, hybrid_searcher, top_k=5)
 
-        # Show final hybrid results
-        results = hybrid_searcher.search_hybrid(query, top_k=10)
-        print_hybrid_results(results, query)
-        print("-" * 80)
+#         # Show final hybrid results
+#         results = hybrid_searcher.search_hybrid(query, top_k=10)
+#         print_hybrid_results(results, query)
+#         print("-" * 80)
