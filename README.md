@@ -277,12 +277,6 @@ The project uses GitHub Actions for automated testing:
 4. **Testing**: Execute full test suite with coverage reporting
 5. **Integration**: Test the setup script with example data
 
-### Branch Protection
-
-- **main branch**: Protected, requires PR reviews and passing CI
-- **develop branch**: Integration branch for feature development
-- **Feature branches**: Use `feature/description` naming convention
-
 ## Troubleshooting
 
 ### Common Issues
