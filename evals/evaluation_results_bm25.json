@@ -3,9 +3,9 @@
     {
       "query": "Where I can find the daily campaign plan data?",
       "query_keywords": [
-        "daily",
+        "campaign",
         "plan",
-        "campaign"
+        "daily"
       ],
       "total_results": 2,
       "relevant_found": 1,
@@ -33,8 +33,8 @@
     {
       "query": "detected fraud data",
       "query_keywords": [
-        "fraud",
-        "detection"
+        "detection",
+        "fraud"
       ],
       "total_results": 5,
       "relevant_found": 1,
@@ -256,8 +256,8 @@
     {
       "query": "table about overall business performance",
       "query_keywords": [
-        "performance",
         "report",
+        "performance",
         "business"
       ],
       "total_results": 8,
@@ -322,8 +322,8 @@
     {
       "query": "data governance",
       "query_keywords": [
-        "governance",
-        "data"
+        "data",
+        "governance"
       ],
       "total_results": 4,
       "relevant_found": 1,
@@ -497,8 +497,8 @@
     {
       "query": "i want to know about our asset tracking",
       "query_keywords": [
-        "asset",
-        "tracking"
+        "tracking",
+        "asset"
       ],
       "total_results": 9,
       "relevant_found": 5,

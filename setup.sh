@@ -16,6 +16,8 @@ fi
 
 # run prepare_models.py
 echo "Step 3: Prepare Semantic LM embedding and BM25 model"
+mkdir -p data/embedding
+mkdir -p models
 uv run src/prepare_models.py --dataset "$DATASET_FILE"
 
 # run evaluate.py
